@@ -1,0 +1,6 @@
+<?xml version="1.0" ?>
+<cache>
+  <line size="16"/>
+  <set lines="16"/>
+  <assoc ways="2"/>
+</cache>

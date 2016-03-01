@@ -1,0 +1,2929 @@
+<?xml version="1.0" encoding="ISO-8859-1" ?>
+<!DOCTYPE program [
+<!ATTLIST program name CDATA #REQUIRED>
+<!ELEMENT program (cfgs,srcfile*)>
+<!ELEMENT cfgs (cfg*)>
+<!ATTLIST cfg
+   id ID #REQUIRED
+   main CDATA #IMPLIED
+   name CDATA #IMPLIED>
+<!ELEMENT cfg (bb+)>
+<!ATTLIST bb id ID #REQUIRED>
+<!ELEMENT bb (prec?,inst*,succ?)>
+<!ELEMENT prec (link+)>
+<!ELEMENT succ (link+)>
+<!ATTLIST link
+   type (taken|nottaken|call) #REQUIRED
+   cfg IDREF #REQUIRED
+   bb IDREF #REQUIRED
+   cond CDATA #IMPLIED>
+<!ELEMENT link EMPTY>
+<!ATTLIST inst
+   src IDREF #IMPLIED
+   line CDATA #IMPLIED
+   addr CDATA #REQUIRED
+   type (ipoint|label|op|jump|branch|call|ret) #IMPLIED
+   name CDATA #IMPLIED
+   operands CDATA #IMPLIED
+   cond CDATA #IMPLIED>
+<!ELEMENT inst EMPTY>
+<!ATTLIST srcfile
+   id ID #REQUIRED
+   name CDATA #IMPLIED>
+<!ELEMENT srcfile (#PCDATA)>
+]>
+
+<program name="main">
+   <cfgs>
+      <cfg id="c6" name="gnc__passive__opcs__compute" main="true">
+         <bb id="c6b1">
+            <inst addr="0x40100000" src="s1" line="11"/>
+            <inst addr="0x40100004"/>
+            <inst addr="0x40100008" src="s1" line="12"/>
+            <inst addr="0x4010000C" src="s1" line="14"/>
+            <inst addr="0x40100010"/>
+            <inst addr="0x40100014"/>
+            <inst addr="0x40100018" src="s1" line="15"/>
+            <inst addr="0x4010001C"/>
+            <inst addr="0x40100020"/>
+            <inst addr="0x40100024" src="s1" line="16"/>
+            <succ>
+               <link type="nottaken" cfg="c6" bb="c6b2"/>
+            </succ>
+         </bb>
+         <bb id="c6b2">
+            <prec>
+               <link type="nottaken" cfg="c6" bb="c6b1"/>
+               <link type="nottaken" cfg="c6" bb="c6b7"/>
+            </prec>
+            <inst addr="0x40100028"/>
+            <inst addr="0x4010002C"/>
+            <inst addr="0x40100030"/>
+            <succ>
+               <link type="nottaken" cfg="c6" bb="c6b3"/>
+               <link type="taken" cfg="c6" bb="c6b4"/>
+            </succ>
+         </bb>
+         <bb id="c6b3">
+            <prec>
+               <link type="nottaken" cfg="c6" bb="c6b2"/>
+            </prec>
+            <inst addr="0x40100034"/>
+            <inst addr="0x40100038" src="s1" line="22"/>
+            <inst addr="0x4010003C"/>
+            <succ>
+               <link type="call" cfg="c7" bb="c7b1"/>
+               <link type="nottaken" cfg="c6" bb="c6b7"/>
+            </succ>
+         </bb>
+         <bb id="c6b4">
+            <prec>
+               <link type="taken" cfg="c6" bb="c6b2"/>
+            </prec>
+            <inst addr="0x40100034"/>
+            <inst addr="0x40100054" src="s1" line="29"/>
+            <inst addr="0x40100058"/>
+            <inst addr="0x4010005C"/>
+            <inst addr="0x40100060" src="s1" line="30"/>
+            <inst addr="0x40100064"/>
+            <succ>
+               <link type="nottaken" cfg="c6" bb="c6b6"/>
+            </succ>
+         </bb>
+         <bb id="c6b6">
+            <prec>
+               <link type="nottaken" cfg="c6" bb="c6b4"/>
+               <link type="nottaken" cfg="c6" bb="c6b11"/>
+            </prec>
+            <inst addr="0x40100068"/>
+            <inst addr="0x4010006C"/>
+            <inst addr="0x40100070"/>
+            <succ>
+               <link type="nottaken" cfg="c6" bb="c6b8"/>
+               <link type="taken" cfg="c6" bb="c6b9"/>
+            </succ>
+         </bb>
+         <bb id="c6b7">
+            <prec>
+               <link type="nottaken" cfg="c6" bb="c6b3"/>
+            </prec>
+            <inst addr="0x40100040" src="s1" line="16"/>
+            <inst addr="0x40100044"/>
+            <inst addr="0x40100048"/>
+            <inst addr="0x4010004C" src="s1" line="28"/>
+            <inst addr="0x40100050"/>
+            <succ>
+               <link type="nottaken" cfg="c6" bb="c6b2"/>
+            </succ>
+         </bb>
+         <bb id="c6b8">
+            <prec>
+               <link type="nottaken" cfg="c6" bb="c6b6"/>
+            </prec>
+            <inst addr="0x40100074"/>
+            <inst addr="0x40100078" src="s1" line="32"/>
+            <inst addr="0x4010007C"/>
+            <succ>
+               <link type="call" cfg="c8" bb="c8b1"/>
+               <link type="nottaken" cfg="c6" bb="c6b11"/>
+            </succ>
+         </bb>
+         <bb id="c6b9">
+            <prec>
+               <link type="taken" cfg="c6" bb="c6b6"/>
+            </prec>
+            <inst addr="0x40100074"/>
+            <inst addr="0x40100094" src="s1" line="35"/>
+            <inst addr="0x40100098"/>
+            <inst addr="0x4010009C"/>
+            <inst addr="0x401000A0" src="s1" line="11"/>
+            <inst addr="0x401000A4" src="s1" line="37"/>
+            <inst addr="0x401000A8"/>
+            <inst addr="0x401000AC"/>
+            <inst addr="0x401000B0"/>
+         </bb>
+         <bb id="c6b11">
+            <prec>
+               <link type="nottaken" cfg="c6" bb="c6b8"/>
+            </prec>
+            <inst addr="0x40100080" src="s1" line="30"/>
+            <inst addr="0x40100084"/>
+            <inst addr="0x40100088"/>
+            <inst addr="0x4010008C" src="s1" line="33"/>
+            <inst addr="0x40100090"/>
+            <succ>
+               <link type="nottaken" cfg="c6" bb="c6b6"/>
+            </succ>
+         </bb>
+      </cfg>
+      <cfg id="c7" name="xgnc__aocs">
+         <bb id="c7b1">
+            <prec>
+               <link type="call" cfg="c6" bb="c6b3"/>
+            </prec>
+            <inst addr="0x401001CC" src="s2" line="34"/>
+            <inst addr="0x401001D0" src="s2" line="37"/>
+            <inst addr="0x401001D4"/>
+            <succ>
+               <link type="nottaken" cfg="c7" bb="c7b2"/>
+            </succ>
+         </bb>
+         <bb id="c7b2">
+            <prec>
+               <link type="nottaken" cfg="c7" bb="c7b1"/>
+               <link type="nottaken" cfg="c7" bb="c7b16"/>
+            </prec>
+            <inst addr="0x401001D8"/>
+            <inst addr="0x401001DC"/>
+            <inst addr="0x401001E0"/>
+            <succ>
+               <link type="nottaken" cfg="c7" bb="c7b3"/>
+               <link type="taken" cfg="c7" bb="c7b4"/>
+            </succ>
+         </bb>
+         <bb id="c7b3">
+            <prec>
+               <link type="nottaken" cfg="c7" bb="c7b2"/>
+            </prec>
+            <inst addr="0x401001E4"/>
+            <inst addr="0x401001E8" src="s2" line="39"/>
+            <inst addr="0x401001EC"/>
+            <inst addr="0x401001F0"/>
+            <inst addr="0x401001F4"/>
+            <inst addr="0x401001F8"/>
+            <inst addr="0x401001FC"/>
+            <inst addr="0x40100200"/>
+            <inst addr="0x40100204"/>
+            <inst addr="0x40100208"/>
+            <succ>
+               <link type="call" cfg="c10" bb="c10b1"/>
+               <link type="nottaken" cfg="c7" bb="c7b6"/>
+            </succ>
+         </bb>
+         <bb id="c7b4">
+            <prec>
+               <link type="taken" cfg="c7" bb="c7b2"/>
+            </prec>
+            <inst addr="0x401001E4"/>
+            <inst addr="0x4010033C" src="s2" line="71"/>
+            <inst addr="0x40100340"/>
+            <inst addr="0x40100344"/>
+         </bb>
+         <bb id="c7b6">
+            <prec>
+               <link type="nottaken" cfg="c7" bb="c7b3"/>
+            </prec>
+            <inst addr="0x4010020C" src="s2" line="41"/>
+            <inst addr="0x40100210"/>
+            <inst addr="0x40100214"/>
+            <inst addr="0x40100218"/>
+            <inst addr="0x4010021C"/>
+            <inst addr="0x40100220"/>
+            <succ>
+               <link type="call" cfg="c11" bb="c11b1"/>
+               <link type="nottaken" cfg="c7" bb="c7b8"/>
+            </succ>
+         </bb>
+         <bb id="c7b8">
+            <prec>
+               <link type="nottaken" cfg="c7" bb="c7b6"/>
+            </prec>
+            <inst addr="0x40100224" src="s2" line="45"/>
+            <inst addr="0x40100228"/>
+            <inst addr="0x4010022C"/>
+            <inst addr="0x40100230"/>
+            <inst addr="0x40100234"/>
+            <inst addr="0x40100238"/>
+            <inst addr="0x4010023C"/>
+            <inst addr="0x40100240"/>
+            <inst addr="0x40100244"/>
+            <inst addr="0x40100248"/>
+            <inst addr="0x4010024C"/>
+            <inst addr="0x40100250"/>
+            <inst addr="0x40100254"/>
+            <succ>
+               <link type="call" cfg="c12" bb="c12b1"/>
+               <link type="nottaken" cfg="c7" bb="c7b10"/>
+            </succ>
+         </bb>
+         <bb id="c7b10">
+            <prec>
+               <link type="nottaken" cfg="c7" bb="c7b8"/>
+            </prec>
+            <inst addr="0x40100258" src="s2" line="54"/>
+            <inst addr="0x4010025C"/>
+            <inst addr="0x40100260"/>
+            <inst addr="0x40100264"/>
+            <inst addr="0x40100268"/>
+            <inst addr="0x4010026C"/>
+            <succ>
+               <link type="call" cfg="c13" bb="c13b1"/>
+               <link type="nottaken" cfg="c7" bb="c7b12"/>
+            </succ>
+         </bb>
+         <bb id="c7b12">
+            <prec>
+               <link type="nottaken" cfg="c7" bb="c7b10"/>
+            </prec>
+            <inst addr="0x40100270" src="s2" line="58"/>
+            <inst addr="0x40100274"/>
+            <inst addr="0x40100278"/>
+            <inst addr="0x4010027C"/>
+            <inst addr="0x40100280"/>
+            <inst addr="0x40100284"/>
+            <inst addr="0x40100288"/>
+            <inst addr="0x4010028C"/>
+            <inst addr="0x40100290"/>
+            <inst addr="0x40100294"/>
+            <inst addr="0x40100298"/>
+            <succ>
+               <link type="call" cfg="c14" bb="c14b1"/>
+               <link type="nottaken" cfg="c7" bb="c7b14"/>
+            </succ>
+         </bb>
+         <bb id="c7b14">
+            <prec>
+               <link type="nottaken" cfg="c7" bb="c7b12"/>
+            </prec>
+            <inst addr="0x4010029C" src="s2" line="62"/>
+            <inst addr="0x401002A0"/>
+            <inst addr="0x401002A4"/>
+            <inst addr="0x401002A8"/>
+            <inst addr="0x401002AC"/>
+            <inst addr="0x401002B0"/>
+            <inst addr="0x401002B4"/>
+            <inst addr="0x401002B8"/>
+            <inst addr="0x401002BC"/>
+            <inst addr="0x401002C0"/>
+            <inst addr="0x401002C4"/>
+            <inst addr="0x401002C8"/>
+            <inst addr="0x401002CC"/>
+            <inst addr="0x401002D0"/>
+            <inst addr="0x401002D4"/>
+            <inst addr="0x401002D8"/>
+            <inst addr="0x401002DC"/>
+            <inst addr="0x401002E0"/>
+            <inst addr="0x401002E4"/>
+            <inst addr="0x401002E8"/>
+            <inst addr="0x401002EC"/>
+            <inst addr="0x401002F0"/>
+            <inst addr="0x401002F4"/>
+            <inst addr="0x401002F8"/>
+            <inst addr="0x401002FC"/>
+            <inst addr="0x40100300"/>
+            <inst addr="0x40100304"/>
+            <inst addr="0x40100308"/>
+            <inst addr="0x4010030C"/>
+            <inst addr="0x40100310"/>
+            <inst addr="0x40100314"/>
+            <inst addr="0x40100318"/>
+            <inst addr="0x4010031C"/>
+            <inst addr="0x40100320"/>
+            <inst addr="0x40100324"/>
+            <succ>
+               <link type="call" cfg="c15" bb="c15b1"/>
+               <link type="nottaken" cfg="c7" bb="c7b16"/>
+            </succ>
+         </bb>
+         <bb id="c7b16">
+            <prec>
+               <link type="nottaken" cfg="c7" bb="c7b14"/>
+            </prec>
+            <inst addr="0x40100328" src="s2" line="37"/>
+            <inst addr="0x4010032C"/>
+            <inst addr="0x40100330"/>
+            <inst addr="0x40100334" src="s2" line="70"/>
+            <inst addr="0x40100338"/>
+            <succ>
+               <link type="nottaken" cfg="c7" bb="c7b2"/>
+            </succ>
+         </bb>
+      </cfg>
+      <cfg id="c10" name="xgnc__guidance__gnc_q4_0_q3_0_q2_0_q1_0">
+         <bb id="c10b1">
+            <prec>
+               <link type="call" cfg="c7" bb="c7b3"/>
+            </prec>
+            <inst addr="0x40100C10" src="s3" line="9"/>
+            <inst addr="0x40100C14"/>
+            <inst addr="0x40100C18"/>
+            <inst addr="0x40100C1C" src="s3" line="17"/>
+            <inst addr="0x40100C20"/>
+            <inst addr="0x40100C24"/>
+            <inst addr="0x40100C28"/>
+            <inst addr="0x40100C2C"/>
+            <inst addr="0x40100C30" src="s3" line="18"/>
+            <inst addr="0x40100C34"/>
+            <inst addr="0x40100C38"/>
+            <inst addr="0x40100C3C"/>
+            <inst addr="0x40100C40"/>
+            <inst addr="0x40100C44" src="s3" line="19"/>
+            <inst addr="0x40100C48"/>
+            <inst addr="0x40100C4C"/>
+            <inst addr="0x40100C50"/>
+            <inst addr="0x40100C54"/>
+            <inst addr="0x40100C58" src="s3" line="20"/>
+            <inst addr="0x40100C5C"/>
+            <inst addr="0x40100C60"/>
+            <inst addr="0x40100C64"/>
+            <inst addr="0x40100C68"/>
+            <inst addr="0x40100C6C" src="s3" line="22"/>
+            <inst addr="0x40100C70"/>
+            <inst addr="0x40100C74"/>
+            <inst addr="0x40100C78"/>
+            <inst addr="0x40100C7C" src="s3" line="23"/>
+            <inst addr="0x40100C80"/>
+            <inst addr="0x40100C84"/>
+            <inst addr="0x40100C88"/>
+            <inst addr="0x40100C8C" src="s3" line="24"/>
+            <inst addr="0x40100C90"/>
+            <inst addr="0x40100C94"/>
+            <inst addr="0x40100C98"/>
+            <inst addr="0x40100C9C" src="s3" line="25"/>
+            <inst addr="0x40100CA0"/>
+            <inst addr="0x40100CA4"/>
+            <inst addr="0x40100CA8"/>
+            <inst addr="0x40100CAC" src="s3" line="26"/>
+            <inst addr="0x40100CB0"/>
+            <inst addr="0x40100CB4"/>
+            <inst addr="0x40100CB8"/>
+            <inst addr="0x40100CBC"/>
+            <inst addr="0x40100CC0"/>
+            <inst addr="0x40100CC4"/>
+            <inst addr="0x40100CC8"/>
+            <inst addr="0x40100CCC"/>
+            <inst addr="0x40100CD0"/>
+            <inst addr="0x40100CD4"/>
+            <inst addr="0x40100CD8"/>
+            <inst addr="0x40100CDC" src="s3" line="27"/>
+            <inst addr="0x40100CE0"/>
+            <inst addr="0x40100CE4"/>
+         </bb>
+      </cfg>
+      <cfg id="c11" name="xgnc__guidance__gnc_attitude_calculation_start">
+         <bb id="c11b1">
+            <prec>
+               <link type="call" cfg="c7" bb="c7b6"/>
+            </prec>
+            <inst addr="0x40100CE8" src="s3" line="78"/>
+            <inst addr="0x40100CEC"/>
+            <inst addr="0x40100CF0"/>
+            <inst addr="0x40100CF4" src="s3" line="80"/>
+            <inst addr="0x40100CF8"/>
+            <inst addr="0x40100CFC"/>
+            <inst addr="0x40100D00"/>
+            <inst addr="0x40100D04" src="s3" line="88"/>
+            <inst addr="0x40100D08"/>
+            <inst addr="0x40100D0C"/>
+            <inst addr="0x40100D10"/>
+            <inst addr="0x40100D14"/>
+            <inst addr="0x40100D18"/>
+            <inst addr="0x40100D1C" src="s3" line="89"/>
+            <inst addr="0x40100D20"/>
+            <inst addr="0x40100D24"/>
+            <inst addr="0x40100D28"/>
+            <inst addr="0x40100D2C"/>
+            <inst addr="0x40100D30"/>
+            <inst addr="0x40100D34" src="s3" line="90"/>
+            <inst addr="0x40100D38"/>
+            <inst addr="0x40100D3C"/>
+            <inst addr="0x40100D40"/>
+            <inst addr="0x40100D44"/>
+            <inst addr="0x40100D48"/>
+            <inst addr="0x40100D4C" src="s3" line="91"/>
+            <inst addr="0x40100D50"/>
+            <inst addr="0x40100D54"/>
+            <inst addr="0x40100D58"/>
+            <inst addr="0x40100D5C"/>
+            <inst addr="0x40100D60"/>
+            <inst addr="0x40100D64" src="s3" line="92"/>
+            <inst addr="0x40100D68"/>
+            <inst addr="0x40100D6C"/>
+            <inst addr="0x40100D70"/>
+            <inst addr="0x40100D74"/>
+            <inst addr="0x40100D78"/>
+            <inst addr="0x40100D7C" src="s3" line="93"/>
+            <inst addr="0x40100D80"/>
+            <inst addr="0x40100D84"/>
+            <inst addr="0x40100D88"/>
+            <inst addr="0x40100D8C" src="s3" line="94"/>
+            <inst addr="0x40100D90"/>
+            <inst addr="0x40100D94"/>
+            <inst addr="0x40100D98"/>
+            <inst addr="0x40100D9C" src="s3" line="95"/>
+            <inst addr="0x40100DA0"/>
+            <inst addr="0x40100DA4"/>
+            <inst addr="0x40100DA8"/>
+            <inst addr="0x40100DAC"/>
+            <inst addr="0x40100DB0"/>
+            <inst addr="0x40100DB4" src="s3" line="96"/>
+            <inst addr="0x40100DB8"/>
+            <inst addr="0x40100DBC"/>
+            <inst addr="0x40100DC0"/>
+            <inst addr="0x40100DC4"/>
+            <inst addr="0x40100DC8"/>
+            <inst addr="0x40100DCC"/>
+            <inst addr="0x40100DD0"/>
+            <inst addr="0x40100DD4" src="s3" line="97"/>
+            <inst addr="0x40100DD8"/>
+            <inst addr="0x40100DDC" src="s3" line="98"/>
+            <inst addr="0x40100DE0"/>
+            <inst addr="0x40100DE4"/>
+            <succ>
+               <link type="call" cfg="c16" bb="c16b1"/>
+               <link type="nottaken" cfg="c11" bb="c11b3"/>
+            </succ>
+         </bb>
+         <bb id="c11b3">
+            <prec>
+               <link type="nottaken" cfg="c11" bb="c11b1"/>
+            </prec>
+            <inst addr="0x40100DE8" src="s3" line="99"/>
+            <inst addr="0x40100DEC"/>
+            <inst addr="0x40100DF0"/>
+            <succ>
+               <link type="call" cfg="c17" bb="c17b1"/>
+               <link type="nottaken" cfg="c11" bb="c11b5"/>
+            </succ>
+         </bb>
+         <bb id="c11b5">
+            <prec>
+               <link type="nottaken" cfg="c11" bb="c11b3"/>
+            </prec>
+            <inst addr="0x40100DF4" src="s3" line="100"/>
+            <inst addr="0x40100DF8"/>
+            <inst addr="0x40100DFC"/>
+         </bb>
+      </cfg>
+      <cfg id="c16" name="xgnc__guidance__gnc_attitude_calculation_disable">
+         <bb id="c16b1">
+            <prec>
+               <link type="call" cfg="c11" bb="c11b1"/>
+            </prec>
+            <inst addr="0x40100E00" src="s3" line="56"/>
+            <inst addr="0x40100E04"/>
+            <inst addr="0x40100E08" src="s3" line="57"/>
+            <inst addr="0x40100E0C"/>
+            <inst addr="0x40100E10"/>
+            <inst addr="0x40100E14"/>
+            <inst addr="0x40100E18" src="s3" line="65"/>
+            <inst addr="0x40100E1C"/>
+            <inst addr="0x40100E20"/>
+            <inst addr="0x40100E24"/>
+            <inst addr="0x40100E28"/>
+            <inst addr="0x40100E2C"/>
+            <inst addr="0x40100E30" src="s3" line="66"/>
+            <inst addr="0x40100E34"/>
+            <inst addr="0x40100E38"/>
+            <inst addr="0x40100E3C"/>
+            <inst addr="0x40100E40"/>
+            <inst addr="0x40100E44"/>
+            <inst addr="0x40100E48" src="s3" line="67"/>
+            <inst addr="0x40100E4C"/>
+            <inst addr="0x40100E50"/>
+            <inst addr="0x40100E54"/>
+            <inst addr="0x40100E58"/>
+            <inst addr="0x40100E5C"/>
+            <inst addr="0x40100E60" src="s3" line="68"/>
+            <inst addr="0x40100E64"/>
+            <inst addr="0x40100E68"/>
+            <inst addr="0x40100E6C"/>
+            <inst addr="0x40100E70"/>
+            <inst addr="0x40100E74"/>
+            <inst addr="0x40100E78" src="s3" line="69"/>
+            <inst addr="0x40100E7C"/>
+            <inst addr="0x40100E80"/>
+            <inst addr="0x40100E84"/>
+            <inst addr="0x40100E88"/>
+            <inst addr="0x40100E8C"/>
+            <inst addr="0x40100E90" src="s3" line="70"/>
+            <inst addr="0x40100E94"/>
+            <inst addr="0x40100E98"/>
+            <inst addr="0x40100E9C"/>
+            <inst addr="0x40100EA0" src="s3" line="71"/>
+            <inst addr="0x40100EA4"/>
+            <inst addr="0x40100EA8"/>
+            <inst addr="0x40100EAC"/>
+            <inst addr="0x40100EB0" src="s3" line="72"/>
+            <inst addr="0x40100EB4"/>
+            <inst addr="0x40100EB8"/>
+            <inst addr="0x40100EBC"/>
+            <inst addr="0x40100EC0"/>
+            <inst addr="0x40100EC4"/>
+            <inst addr="0x40100EC8" src="s3" line="73"/>
+            <inst addr="0x40100ECC"/>
+            <inst addr="0x40100ED0"/>
+            <inst addr="0x40100ED4"/>
+            <inst addr="0x40100ED8"/>
+            <inst addr="0x40100EDC"/>
+            <inst addr="0x40100EE0"/>
+            <inst addr="0x40100EE4"/>
+            <inst addr="0x40100EE8" src="s3" line="74"/>
+            <inst addr="0x40100EEC"/>
+            <inst addr="0x40100EF0" src="s3" line="75"/>
+            <inst addr="0x40100EF4"/>
+            <inst addr="0x40100EF8"/>
+            <inst addr="0x40100EFC" src="s3" line="76"/>
+            <inst addr="0x40100F00"/>
+            <inst addr="0x40100F04"/>
+         </bb>
+      </cfg>
+      <cfg id="c17" name="xgnc__guidance__gnc_attitude_calculation_init">
+         <bb id="c17b1">
+            <prec>
+               <link type="call" cfg="c11" bb="c11b3"/>
+            </prec>
+            <inst addr="0x40100F08" src="s3" line="29"/>
+            <inst addr="0x40100F0C"/>
+            <inst addr="0x40100F10" src="s3" line="30"/>
+            <inst addr="0x40100F14"/>
+            <inst addr="0x40100F18"/>
+            <inst addr="0x40100F1C"/>
+            <inst addr="0x40100F20" src="s3" line="38"/>
+            <inst addr="0x40100F24"/>
+            <inst addr="0x40100F28"/>
+            <inst addr="0x40100F2C"/>
+            <inst addr="0x40100F30"/>
+            <inst addr="0x40100F34"/>
+            <inst addr="0x40100F38" src="s3" line="39"/>
+            <inst addr="0x40100F3C"/>
+            <inst addr="0x40100F40"/>
+            <inst addr="0x40100F44"/>
+            <inst addr="0x40100F48"/>
+            <inst addr="0x40100F4C"/>
+            <inst addr="0x40100F50" src="s3" line="40"/>
+            <inst addr="0x40100F54"/>
+            <inst addr="0x40100F58"/>
+            <inst addr="0x40100F5C"/>
+            <inst addr="0x40100F60"/>
+            <inst addr="0x40100F64"/>
+            <inst addr="0x40100F68" src="s3" line="41"/>
+            <inst addr="0x40100F6C"/>
+            <inst addr="0x40100F70"/>
+            <inst addr="0x40100F74"/>
+            <inst addr="0x40100F78"/>
+            <inst addr="0x40100F7C"/>
+            <inst addr="0x40100F80" src="s3" line="42"/>
+            <inst addr="0x40100F84"/>
+            <inst addr="0x40100F88"/>
+            <inst addr="0x40100F8C"/>
+            <inst addr="0x40100F90"/>
+            <inst addr="0x40100F94"/>
+            <inst addr="0x40100F98" src="s3" line="43"/>
+            <inst addr="0x40100F9C"/>
+            <inst addr="0x40100FA0"/>
+            <inst addr="0x40100FA4"/>
+            <inst addr="0x40100FA8" src="s3" line="44"/>
+            <inst addr="0x40100FAC"/>
+            <inst addr="0x40100FB0"/>
+            <inst addr="0x40100FB4"/>
+            <inst addr="0x40100FB8" src="s3" line="45"/>
+            <inst addr="0x40100FBC"/>
+            <inst addr="0x40100FC0"/>
+            <inst addr="0x40100FC4"/>
+            <inst addr="0x40100FC8"/>
+            <inst addr="0x40100FCC"/>
+            <inst addr="0x40100FD0" src="s3" line="46"/>
+            <inst addr="0x40100FD4"/>
+            <inst addr="0x40100FD8"/>
+            <inst addr="0x40100FDC"/>
+            <inst addr="0x40100FE0"/>
+            <inst addr="0x40100FE4"/>
+            <inst addr="0x40100FE8"/>
+            <inst addr="0x40100FEC"/>
+            <inst addr="0x40100FF0" src="s3" line="47"/>
+            <inst addr="0x40100FF4"/>
+            <inst addr="0x40100FF8" src="s3" line="48"/>
+            <inst addr="0x40100FFC"/>
+            <inst addr="0x40101000"/>
+            <inst addr="0x40101004"/>
+            <inst addr="0x40101008"/>
+            <inst addr="0x4010100C" src="s3" line="49"/>
+            <inst addr="0x40101010"/>
+            <inst addr="0x40101014"/>
+            <inst addr="0x40101018"/>
+            <inst addr="0x4010101C"/>
+            <inst addr="0x40101020" src="s3" line="50"/>
+            <inst addr="0x40101024"/>
+            <inst addr="0x40101028"/>
+            <inst addr="0x4010102C"/>
+            <inst addr="0x40101030"/>
+            <inst addr="0x40101034" src="s3" line="51"/>
+            <inst addr="0x40101038"/>
+            <inst addr="0x4010103C"/>
+            <inst addr="0x40101040"/>
+            <inst addr="0x40101044"/>
+            <inst addr="0x40101048" src="s3" line="52"/>
+            <inst addr="0x4010104C"/>
+            <inst addr="0x40101050"/>
+            <inst addr="0x40101054" src="s3" line="53"/>
+            <inst addr="0x40101058"/>
+            <inst addr="0x4010105C"/>
+            <inst addr="0x40101060" src="s3" line="54"/>
+            <inst addr="0x40101064"/>
+            <inst addr="0x40101068"/>
+         </bb>
+      </cfg>
+      <cfg id="c12" name="xgnc__guidance__gnc_attitude_calculation">
+         <bb id="c12b1">
+            <prec>
+               <link type="call" cfg="c7" bb="c7b8"/>
+            </prec>
+            <inst addr="0x4010106C" src="s3" line="102"/>
+            <inst addr="0x40101070"/>
+            <inst addr="0x40101074"/>
+            <inst addr="0x40101078"/>
+            <inst addr="0x4010107C"/>
+            <inst addr="0x40101080" src="s3" line="123"/>
+            <inst addr="0x40101084"/>
+            <inst addr="0x40101088"/>
+            <inst addr="0x4010108C"/>
+            <inst addr="0x40101090"/>
+            <inst addr="0x40101094"/>
+            <inst addr="0x40101098"/>
+            <inst addr="0x4010109C"/>
+            <inst addr="0x401010A0"/>
+            <inst addr="0x401010A4"/>
+            <inst addr="0x401010A8"/>
+            <inst addr="0x401010AC"/>
+            <inst addr="0x401010B0"/>
+            <inst addr="0x401010B4"/>
+            <inst addr="0x401010B8"/>
+            <inst addr="0x401010BC"/>
+            <inst addr="0x401010C0" src="s3" line="124"/>
+            <inst addr="0x401010C4"/>
+            <inst addr="0x401010C8"/>
+            <inst addr="0x401010CC"/>
+            <inst addr="0x401010D0" src="s3" line="125"/>
+            <inst addr="0x401010D4"/>
+            <inst addr="0x401010D8"/>
+            <inst addr="0x401010DC"/>
+            <inst addr="0x401010E0" src="s3" line="126"/>
+            <inst addr="0x401010E4"/>
+            <inst addr="0x401010E8"/>
+            <inst addr="0x401010EC"/>
+            <inst addr="0x401010F0"/>
+            <inst addr="0x401010F4"/>
+            <inst addr="0x401010F8"/>
+            <inst addr="0x401010FC"/>
+            <inst addr="0x40101100"/>
+            <inst addr="0x40101104"/>
+            <inst addr="0x40101108"/>
+            <inst addr="0x4010110C"/>
+            <inst addr="0x40101110"/>
+            <inst addr="0x40101114"/>
+            <inst addr="0x40101118"/>
+            <inst addr="0x4010111C"/>
+            <inst addr="0x40101120" src="s3" line="127"/>
+            <inst addr="0x40101124"/>
+            <inst addr="0x40101128"/>
+            <inst addr="0x4010112C"/>
+            <inst addr="0x40101130"/>
+            <inst addr="0x40101134"/>
+            <inst addr="0x40101138"/>
+            <inst addr="0x4010113C"/>
+            <inst addr="0x40101140"/>
+            <inst addr="0x40101144"/>
+            <inst addr="0x40101148"/>
+            <inst addr="0x4010114C"/>
+            <inst addr="0x40101150"/>
+            <inst addr="0x40101154"/>
+            <inst addr="0x40101158"/>
+            <inst addr="0x4010115C"/>
+            <inst addr="0x40101160" src="s3" line="128"/>
+            <inst addr="0x40101164"/>
+            <inst addr="0x40101168"/>
+            <inst addr="0x4010116C"/>
+            <inst addr="0x40101170" src="s3" line="129"/>
+            <inst addr="0x40101174"/>
+            <inst addr="0x40101178"/>
+            <inst addr="0x4010117C"/>
+            <inst addr="0x40101180" src="s3" line="130"/>
+            <inst addr="0x40101184"/>
+            <inst addr="0x40101188"/>
+            <inst addr="0x4010118C"/>
+            <inst addr="0x40101190" src="s3" line="131"/>
+            <inst addr="0x40101194"/>
+            <inst addr="0x40101198"/>
+            <inst addr="0x4010119C"/>
+            <inst addr="0x401011A0" src="s3" line="132"/>
+            <inst addr="0x401011A4"/>
+            <inst addr="0x401011A8"/>
+            <inst addr="0x401011AC"/>
+            <inst addr="0x401011B0" src="s3" line="133"/>
+            <inst addr="0x401011B4"/>
+            <inst addr="0x401011B8"/>
+            <inst addr="0x401011BC"/>
+            <inst addr="0x401011C0" src="s3" line="136"/>
+            <inst addr="0x401011C4"/>
+            <inst addr="0x401011C8"/>
+            <inst addr="0x401011CC" src="s3" line="138"/>
+            <inst addr="0x401011D0" src="s3" line="145"/>
+            <inst addr="0x401011D4"/>
+            <inst addr="0x401011D8"/>
+            <inst addr="0x401011DC"/>
+            <inst addr="0x401011E0" src="s3" line="146"/>
+            <inst addr="0x401011E4"/>
+            <inst addr="0x401011E8"/>
+            <inst addr="0x401011EC"/>
+            <inst addr="0x401011F0" src="s3" line="147"/>
+            <inst addr="0x401011F4"/>
+            <inst addr="0x401011F8"/>
+            <inst addr="0x401011FC"/>
+            <inst addr="0x40101200" src="s3" line="148"/>
+            <inst addr="0x40101204"/>
+            <inst addr="0x40101208"/>
+            <inst addr="0x4010120C"/>
+            <inst addr="0x40101210" src="s3" line="149"/>
+            <inst addr="0x40101214"/>
+            <inst addr="0x40101218" src="s3" line="150"/>
+            <inst addr="0x4010121C"/>
+            <inst addr="0x40101220"/>
+            <inst addr="0x40101224" src="s3" line="151"/>
+            <inst addr="0x40101228"/>
+            <inst addr="0x4010122C"/>
+            <inst addr="0x40101230"/>
+            <inst addr="0x40101234"/>
+            <inst addr="0x40101238" src="s3" line="152"/>
+            <inst addr="0x4010123C"/>
+            <inst addr="0x40101240"/>
+            <inst addr="0x40101244"/>
+            <inst addr="0x40101248"/>
+            <inst addr="0x4010124C" src="s3" line="153"/>
+            <inst addr="0x40101250"/>
+            <inst addr="0x40101254"/>
+            <inst addr="0x40101258"/>
+            <inst addr="0x4010125C"/>
+            <inst addr="0x40101260" src="s3" line="154"/>
+            <inst addr="0x40101264"/>
+            <inst addr="0x40101268"/>
+            <inst addr="0x4010126C"/>
+            <inst addr="0x40101270"/>
+            <inst addr="0x40101274"/>
+            <inst addr="0x40101278"/>
+            <inst addr="0x4010127C"/>
+            <inst addr="0x40101280"/>
+            <inst addr="0x40101284"/>
+            <inst addr="0x40101288"/>
+            <inst addr="0x4010128C"/>
+            <inst addr="0x40101290"/>
+            <inst addr="0x40101294" src="s3" line="155"/>
+            <inst addr="0x40101298"/>
+            <inst addr="0x4010129C"/>
+            <inst addr="0x401012A0"/>
+            <inst addr="0x401012A4" src="s3" line="156"/>
+            <inst addr="0x401012A8"/>
+            <inst addr="0x401012AC"/>
+            <inst addr="0x401012B0"/>
+            <inst addr="0x401012B4"/>
+            <inst addr="0x401012B8"/>
+            <inst addr="0x401012BC"/>
+            <inst addr="0x401012C0"/>
+            <inst addr="0x401012C4" src="s3" line="157"/>
+            <inst addr="0x401012C8"/>
+            <inst addr="0x401012CC"/>
+            <inst addr="0x401012D0"/>
+            <inst addr="0x401012D4"/>
+            <inst addr="0x401012D8"/>
+            <inst addr="0x401012DC"/>
+            <inst addr="0x401012E0"/>
+            <inst addr="0x401012E4" src="s3" line="158"/>
+            <inst addr="0x401012E8"/>
+            <inst addr="0x401012EC"/>
+            <inst addr="0x401012F0"/>
+            <inst addr="0x401012F4"/>
+            <inst addr="0x401012F8"/>
+            <inst addr="0x401012FC" src="s3" line="159"/>
+            <inst addr="0x40101300"/>
+            <inst addr="0x40101304"/>
+            <inst addr="0x40101308"/>
+            <inst addr="0x4010130C"/>
+            <inst addr="0x40101310"/>
+            <inst addr="0x40101314"/>
+            <succ>
+               <link type="nottaken" cfg="c12" bb="c12b2"/>
+               <link type="taken" cfg="c12" bb="c12b3"/>
+            </succ>
+         </bb>
+         <bb id="c12b2">
+            <prec>
+               <link type="nottaken" cfg="c12" bb="c12b1"/>
+            </prec>
+            <inst addr="0x40101318"/>
+            <inst addr="0x4010131C"/>
+            <inst addr="0x40101320"/>
+            <inst addr="0x40101338" src="s3" line="162"/>
+            <inst addr="0x4010133C"/>
+            <succ>
+               <link type="nottaken" cfg="c12" bb="c12b4"/>
+            </succ>
+         </bb>
+         <bb id="c12b3">
+            <prec>
+               <link type="taken" cfg="c12" bb="c12b1"/>
+            </prec>
+            <inst addr="0x40101318"/>
+            <inst addr="0x40101324" src="s3" line="160"/>
+            <inst addr="0x40101328"/>
+            <inst addr="0x4010132C"/>
+            <inst addr="0x40101330"/>
+            <inst addr="0x40101334"/>
+            <succ>
+               <link type="nottaken" cfg="c12" bb="c12b4"/>
+            </succ>
+         </bb>
+         <bb id="c12b4">
+            <prec>
+               <link type="nottaken" cfg="c12" bb="c12b2"/>
+               <link type="nottaken" cfg="c12" bb="c12b3"/>
+            </prec>
+            <inst addr="0x40101340" src="s3" line="164"/>
+            <inst addr="0x40101344"/>
+            <inst addr="0x40101348"/>
+            <inst addr="0x4010134C"/>
+            <inst addr="0x40101350"/>
+            <inst addr="0x40101354"/>
+            <inst addr="0x40101358" src="s3" line="165"/>
+            <inst addr="0x4010135C"/>
+            <inst addr="0x40101360"/>
+            <inst addr="0x40101364"/>
+            <inst addr="0x40101368"/>
+            <inst addr="0x4010136C"/>
+            <inst addr="0x40101370"/>
+            <inst addr="0x40101374"/>
+            <inst addr="0x40101378" src="s3" line="166"/>
+            <inst addr="0x4010137C"/>
+            <inst addr="0x40101380"/>
+            <inst addr="0x40101384"/>
+            <inst addr="0x40101388"/>
+            <inst addr="0x4010138C"/>
+            <inst addr="0x40101390"/>
+            <inst addr="0x40101394"/>
+            <inst addr="0x40101398" src="s3" line="165"/>
+            <inst addr="0x4010139C"/>
+            <inst addr="0x401013A0"/>
+            <inst addr="0x401013A4"/>
+            <inst addr="0x401013A8" src="s3" line="167"/>
+            <inst addr="0x401013AC"/>
+            <inst addr="0x401013B0"/>
+            <inst addr="0x401013B4"/>
+            <inst addr="0x401013B8"/>
+            <inst addr="0x401013BC"/>
+            <inst addr="0x401013C0"/>
+            <inst addr="0x401013C4"/>
+            <inst addr="0x401013C8" src="s3" line="168"/>
+            <inst addr="0x401013CC"/>
+            <inst addr="0x401013D0"/>
+            <inst addr="0x401013D4"/>
+            <inst addr="0x401013D8"/>
+            <inst addr="0x401013DC"/>
+            <inst addr="0x401013E0"/>
+            <inst addr="0x401013E4"/>
+            <inst addr="0x401013E8" src="s3" line="167"/>
+            <inst addr="0x401013EC"/>
+            <inst addr="0x401013F0"/>
+            <inst addr="0x401013F4"/>
+            <inst addr="0x401013F8" src="s3" line="169"/>
+            <inst addr="0x401013FC"/>
+            <inst addr="0x40101400" src="s3" line="170"/>
+            <inst addr="0x40101404"/>
+            <inst addr="0x40101408"/>
+            <inst addr="0x4010140C"/>
+            <inst addr="0x40101410" src="s3" line="171"/>
+            <inst addr="0x40101414"/>
+            <inst addr="0x40101418"/>
+            <inst addr="0x4010141C"/>
+            <inst addr="0x40101420" src="s3" line="172"/>
+            <inst addr="0x40101424"/>
+            <inst addr="0x40101428"/>
+            <inst addr="0x4010142C"/>
+            <inst addr="0x40101430" src="s3" line="177"/>
+            <inst addr="0x40101434"/>
+            <inst addr="0x40101438"/>
+         </bb>
+      </cfg>
+      <cfg id="c13" name="xgnc__navigation__gnc_select_sun_versor_enable">
+         <bb id="c13b1">
+            <prec>
+               <link type="call" cfg="c7" bb="c7b10"/>
+            </prec>
+            <inst addr="0x4010143C" src="s4" line="13"/>
+            <inst addr="0x40101440"/>
+            <inst addr="0x40101444"/>
+            <inst addr="0x40101448" src="s4" line="15"/>
+            <inst addr="0x4010144C"/>
+            <inst addr="0x40101450"/>
+            <inst addr="0x40101454"/>
+            <inst addr="0x40101458" src="s4" line="23"/>
+            <inst addr="0x4010145C"/>
+            <inst addr="0x40101460"/>
+            <inst addr="0x40101464"/>
+            <inst addr="0x40101468"/>
+            <inst addr="0x4010146C"/>
+            <inst addr="0x40101470" src="s4" line="24"/>
+            <inst addr="0x40101474"/>
+            <inst addr="0x40101478"/>
+            <inst addr="0x4010147C"/>
+            <inst addr="0x40101480"/>
+            <inst addr="0x40101484"/>
+            <inst addr="0x40101488" src="s4" line="25"/>
+            <inst addr="0x4010148C"/>
+            <inst addr="0x40101490"/>
+            <inst addr="0x40101494"/>
+            <inst addr="0x40101498"/>
+            <inst addr="0x4010149C"/>
+            <inst addr="0x401014A0" src="s4" line="26"/>
+            <inst addr="0x401014A4"/>
+            <inst addr="0x401014A8"/>
+            <inst addr="0x401014AC"/>
+            <inst addr="0x401014B0"/>
+            <inst addr="0x401014B4"/>
+            <inst addr="0x401014B8" src="s4" line="27"/>
+            <inst addr="0x401014BC"/>
+            <inst addr="0x401014C0"/>
+            <inst addr="0x401014C4"/>
+            <inst addr="0x401014C8"/>
+            <inst addr="0x401014CC"/>
+            <inst addr="0x401014D0" src="s4" line="28"/>
+            <inst addr="0x401014D4"/>
+            <inst addr="0x401014D8"/>
+            <inst addr="0x401014DC"/>
+            <inst addr="0x401014E0" src="s4" line="29"/>
+            <inst addr="0x401014E4"/>
+            <inst addr="0x401014E8"/>
+            <inst addr="0x401014EC"/>
+            <inst addr="0x401014F0" src="s4" line="30"/>
+            <inst addr="0x401014F4"/>
+            <inst addr="0x401014F8"/>
+            <inst addr="0x401014FC"/>
+            <inst addr="0x40101500"/>
+            <inst addr="0x40101504"/>
+            <inst addr="0x40101508" src="s4" line="31"/>
+            <inst addr="0x4010150C"/>
+            <inst addr="0x40101510"/>
+            <inst addr="0x40101514"/>
+            <inst addr="0x40101518"/>
+            <inst addr="0x4010151C"/>
+            <inst addr="0x40101520"/>
+            <inst addr="0x40101524"/>
+            <inst addr="0x40101528" src="s4" line="32"/>
+            <inst addr="0x4010152C"/>
+            <inst addr="0x40101530" src="s4" line="34"/>
+            <inst addr="0x40101534"/>
+            <inst addr="0x40101538"/>
+            <inst addr="0x4010153C"/>
+            <inst addr="0x40101540" src="s4" line="35"/>
+            <inst addr="0x40101544"/>
+            <inst addr="0x40101548"/>
+            <inst addr="0x4010154C"/>
+            <inst addr="0x40101550" src="s4" line="36"/>
+            <inst addr="0x40101554"/>
+            <inst addr="0x40101558"/>
+            <inst addr="0x4010155C"/>
+            <inst addr="0x40101560" src="s4" line="37"/>
+            <inst addr="0x40101564"/>
+            <inst addr="0x40101568"/>
+            <inst addr="0x4010156C" src="s4" line="38"/>
+            <inst addr="0x40101570"/>
+            <inst addr="0x40101574"/>
+            <inst addr="0x40101578" src="s4" line="39"/>
+            <inst addr="0x4010157C"/>
+            <inst addr="0x40101580"/>
+         </bb>
+      </cfg>
+      <cfg id="c14" name="xgnc__navigation__gnc_select_sun_versor">
+         <bb id="c14b1">
+            <prec>
+               <link type="call" cfg="c7" bb="c7b12"/>
+            </prec>
+            <inst addr="0x40101584" src="s4" line="41"/>
+            <inst addr="0x40101588"/>
+            <inst addr="0x4010158C"/>
+            <inst addr="0x40101590"/>
+            <inst addr="0x40101594" src="s4" line="45"/>
+            <inst addr="0x40101598"/>
+            <inst addr="0x4010159C"/>
+            <inst addr="0x401015A0"/>
+            <inst addr="0x401015A4" src="s4" line="53"/>
+            <inst addr="0x401015A8"/>
+            <inst addr="0x401015AC"/>
+            <inst addr="0x401015B0"/>
+            <inst addr="0x401015B4"/>
+            <inst addr="0x401015B8"/>
+            <inst addr="0x401015BC" src="s4" line="54"/>
+            <inst addr="0x401015C0"/>
+            <inst addr="0x401015C4"/>
+            <inst addr="0x401015C8"/>
+            <inst addr="0x401015CC"/>
+            <inst addr="0x401015D0"/>
+            <inst addr="0x401015D4" src="s4" line="55"/>
+            <inst addr="0x401015D8"/>
+            <inst addr="0x401015DC"/>
+            <inst addr="0x401015E0"/>
+            <inst addr="0x401015E4"/>
+            <inst addr="0x401015E8"/>
+            <inst addr="0x401015EC" src="s4" line="56"/>
+            <inst addr="0x401015F0"/>
+            <inst addr="0x401015F4"/>
+            <inst addr="0x401015F8"/>
+            <inst addr="0x401015FC"/>
+            <inst addr="0x40101600"/>
+            <inst addr="0x40101604" src="s4" line="57"/>
+            <inst addr="0x40101608"/>
+            <inst addr="0x4010160C"/>
+            <inst addr="0x40101610"/>
+            <inst addr="0x40101614"/>
+            <inst addr="0x40101618"/>
+            <inst addr="0x4010161C" src="s4" line="58"/>
+            <inst addr="0x40101620"/>
+            <inst addr="0x40101624"/>
+            <inst addr="0x40101628"/>
+            <inst addr="0x4010162C" src="s4" line="59"/>
+            <inst addr="0x40101630"/>
+            <inst addr="0x40101634"/>
+            <inst addr="0x40101638"/>
+            <inst addr="0x4010163C" src="s4" line="60"/>
+            <inst addr="0x40101640"/>
+            <inst addr="0x40101644"/>
+            <inst addr="0x40101648"/>
+            <inst addr="0x4010164C"/>
+            <inst addr="0x40101650"/>
+            <inst addr="0x40101654" src="s4" line="61"/>
+            <inst addr="0x40101658"/>
+            <inst addr="0x4010165C"/>
+            <inst addr="0x40101660"/>
+            <inst addr="0x40101664"/>
+            <inst addr="0x40101668"/>
+            <inst addr="0x4010166C"/>
+            <inst addr="0x40101670"/>
+            <inst addr="0x40101674" src="s4" line="62"/>
+            <inst addr="0x40101678"/>
+            <inst addr="0x4010167C" src="s4" line="63"/>
+            <inst addr="0x40101680"/>
+            <inst addr="0x40101684"/>
+            <inst addr="0x40101688"/>
+            <inst addr="0x4010168C"/>
+            <inst addr="0x40101690"/>
+            <inst addr="0x40101694"/>
+            <succ>
+               <link type="nottaken" cfg="c14" bb="c14b2"/>
+               <link type="taken" cfg="c14" bb="c14b3"/>
+            </succ>
+         </bb>
+         <bb id="c14b2">
+            <prec>
+               <link type="nottaken" cfg="c14" bb="c14b1"/>
+            </prec>
+            <inst addr="0x40101698"/>
+            <inst addr="0x4010169C"/>
+            <inst addr="0x401016A0"/>
+            <inst addr="0x401016B0" src="s4" line="66"/>
+            <inst addr="0x401016B4"/>
+            <inst addr="0x401016B8"/>
+            <succ>
+               <link type="nottaken" cfg="c14" bb="c14b4"/>
+            </succ>
+         </bb>
+         <bb id="c14b3">
+            <prec>
+               <link type="taken" cfg="c14" bb="c14b1"/>
+            </prec>
+            <inst addr="0x40101698"/>
+            <inst addr="0x401016A4" src="s4" line="64"/>
+            <inst addr="0x401016A8"/>
+            <inst addr="0x401016AC"/>
+            <succ>
+               <link type="nottaken" cfg="c14" bb="c14b4"/>
+            </succ>
+         </bb>
+         <bb id="c14b4">
+            <prec>
+               <link type="nottaken" cfg="c14" bb="c14b2"/>
+               <link type="nottaken" cfg="c14" bb="c14b3"/>
+            </prec>
+            <inst addr="0x401016BC" src="s4" line="72"/>
+            <inst addr="0x401016C0"/>
+            <inst addr="0x401016C4"/>
+            <inst addr="0x401016C8"/>
+            <inst addr="0x401016CC" src="s4" line="73"/>
+            <inst addr="0x401016D0"/>
+            <inst addr="0x401016D4"/>
+            <inst addr="0x401016D8"/>
+            <inst addr="0x401016DC" src="s4" line="74"/>
+            <inst addr="0x401016E0"/>
+            <inst addr="0x401016E4"/>
+            <inst addr="0x401016E8"/>
+            <inst addr="0x401016EC" src="s4" line="78"/>
+            <inst addr="0x401016F0"/>
+            <inst addr="0x401016F4"/>
+         </bb>
+      </cfg>
+      <cfg id="c15" name="xgnc__navigation__gnc_ambiguous_sun_direction">
+         <bb id="c15b1">
+            <prec>
+               <link type="call" cfg="c7" bb="c7b14"/>
+            </prec>
+            <inst addr="0x40101758" src="s4" line="173"/>
+            <inst addr="0x4010175C"/>
+            <inst addr="0x40101760"/>
+            <inst addr="0x40101764"/>
+            <inst addr="0x40101768"/>
+            <inst addr="0x4010176C"/>
+            <inst addr="0x40101770"/>
+            <inst addr="0x40101774" src="s4" line="186"/>
+            <inst addr="0x40101778"/>
+            <inst addr="0x4010177C"/>
+            <inst addr="0x40101780"/>
+            <inst addr="0x40101784"/>
+            <inst addr="0x40101788"/>
+            <inst addr="0x4010178C"/>
+            <succ>
+               <link type="nottaken" cfg="c15" bb="c15b2"/>
+               <link type="taken" cfg="c15" bb="c15b3"/>
+            </succ>
+         </bb>
+         <bb id="c15b2">
+            <prec>
+               <link type="nottaken" cfg="c15" bb="c15b1"/>
+            </prec>
+            <inst addr="0x40101790"/>
+            <inst addr="0x40101794"/>
+            <inst addr="0x40101798"/>
+            <inst addr="0x401017A8" src="s4" line="189"/>
+            <inst addr="0x401017AC"/>
+            <inst addr="0x401017B0"/>
+            <succ>
+               <link type="nottaken" cfg="c15" bb="c15b4"/>
+            </succ>
+         </bb>
+         <bb id="c15b3">
+            <prec>
+               <link type="taken" cfg="c15" bb="c15b1"/>
+            </prec>
+            <inst addr="0x40101790"/>
+            <inst addr="0x4010179C" src="s4" line="187"/>
+            <inst addr="0x401017A0"/>
+            <inst addr="0x401017A4"/>
+            <succ>
+               <link type="nottaken" cfg="c15" bb="c15b4"/>
+            </succ>
+         </bb>
+         <bb id="c15b4">
+            <prec>
+               <link type="nottaken" cfg="c15" bb="c15b2"/>
+               <link type="nottaken" cfg="c15" bb="c15b3"/>
+            </prec>
+            <inst addr="0x401017B4" src="s4" line="192"/>
+            <inst addr="0x401017B8"/>
+            <inst addr="0x401017BC"/>
+            <inst addr="0x401017C0"/>
+            <inst addr="0x401017C4"/>
+            <inst addr="0x401017C8"/>
+            <inst addr="0x401017CC"/>
+            <inst addr="0x401017D0"/>
+            <inst addr="0x401017D4"/>
+            <inst addr="0x401017D8"/>
+            <inst addr="0x401017DC" src="s4" line="194"/>
+            <inst addr="0x401017E0"/>
+            <inst addr="0x401017E4"/>
+            <inst addr="0x401017E8"/>
+            <succ>
+               <link type="nottaken" cfg="c15" bb="c15b5"/>
+               <link type="taken" cfg="c15" bb="c15b6"/>
+            </succ>
+         </bb>
+         <bb id="c15b5">
+            <prec>
+               <link type="nottaken" cfg="c15" bb="c15b4"/>
+            </prec>
+            <inst addr="0x401017EC"/>
+            <inst addr="0x401017F0" src="s4" line="195"/>
+            <inst addr="0x401017F4"/>
+            <inst addr="0x401017F8"/>
+            <inst addr="0x401017FC"/>
+            <inst addr="0x40101800"/>
+            <succ>
+               <link type="nottaken" cfg="c15" bb="c15b7"/>
+            </succ>
+         </bb>
+         <bb id="c15b6">
+            <prec>
+               <link type="taken" cfg="c15" bb="c15b4"/>
+            </prec>
+            <inst addr="0x401017EC"/>
+            <inst addr="0x40101804" src="s4" line="196"/>
+            <inst addr="0x40101808"/>
+            <inst addr="0x4010180C"/>
+            <inst addr="0x40101810"/>
+            <succ>
+               <link type="nottaken" cfg="c15" bb="c15b8"/>
+               <link type="taken" cfg="c15" bb="c15b9"/>
+            </succ>
+         </bb>
+         <bb id="c15b7">
+            <prec>
+               <link type="nottaken" cfg="c15" bb="c15b5"/>
+               <link type="nottaken" cfg="c15" bb="c15b15"/>
+               <link type="nottaken" cfg="c15" bb="c15b14"/>
+               <link type="nottaken" cfg="c15" bb="c15b34"/>
+               <link type="nottaken" cfg="c15" bb="c15b35"/>
+               <link type="nottaken" cfg="c15" bb="c15b36"/>
+            </prec>
+            <inst addr="0x40101A44" src="s4" line="229"/>
+            <inst addr="0x40101A48"/>
+            <inst addr="0x40101A4C"/>
+            <succ>
+               <link type="nottaken" cfg="c15" bb="c15b10"/>
+               <link type="taken" cfg="c15" bb="c15b11"/>
+            </succ>
+         </bb>
+         <bb id="c15b8">
+            <prec>
+               <link type="nottaken" cfg="c15" bb="c15b6"/>
+            </prec>
+            <inst addr="0x40101814"/>
+            <inst addr="0x40101818" src="s4" line="197"/>
+            <inst addr="0x4010181C"/>
+            <inst addr="0x40101820" src="s4" line="199"/>
+            <inst addr="0x40101824"/>
+            <inst addr="0x40101828"/>
+            <inst addr="0x4010182C"/>
+            <inst addr="0x40101830"/>
+            <inst addr="0x40101834"/>
+            <inst addr="0x40101838"/>
+            <inst addr="0x4010183C"/>
+            <succ>
+               <link type="nottaken" cfg="c15" bb="c15b12"/>
+               <link type="taken" cfg="c15" bb="c15b13"/>
+            </succ>
+         </bb>
+         <bb id="c15b9">
+            <prec>
+               <link type="taken" cfg="c15" bb="c15b6"/>
+            </prec>
+            <inst addr="0x40101814"/>
+            <inst addr="0x40101A20" src="s4" line="224"/>
+            <inst addr="0x40101A24"/>
+            <inst addr="0x40101A28"/>
+            <inst addr="0x40101A2C"/>
+            <succ>
+               <link type="nottaken" cfg="c15" bb="c15b14"/>
+               <link type="taken" cfg="c15" bb="c15b15"/>
+            </succ>
+         </bb>
+         <bb id="c15b10">
+            <prec>
+               <link type="nottaken" cfg="c15" bb="c15b7"/>
+            </prec>
+            <inst addr="0x40101A50"/>
+            <inst addr="0x40101A54" src="s4" line="230"/>
+            <inst addr="0x40101A58"/>
+            <inst addr="0x40101A5C" src="s4" line="231"/>
+            <inst addr="0x40101A60"/>
+            <inst addr="0x40101A64"/>
+            <inst addr="0x40101A68"/>
+            <succ>
+               <link type="nottaken" cfg="c15" bb="c15b16"/>
+            </succ>
+         </bb>
+         <bb id="c15b11">
+            <prec>
+               <link type="taken" cfg="c15" bb="c15b7"/>
+            </prec>
+            <inst addr="0x40101A50"/>
+            <inst addr="0x40101A6C" src="s4" line="233"/>
+            <inst addr="0x40101A70"/>
+            <succ>
+               <link type="nottaken" cfg="c15" bb="c15b16"/>
+            </succ>
+         </bb>
+         <bb id="c15b12">
+            <prec>
+               <link type="nottaken" cfg="c15" bb="c15b8"/>
+            </prec>
+            <inst addr="0x40101840"/>
+            <inst addr="0x40101844"/>
+            <succ>
+               <link type="nottaken" cfg="c15" bb="c15b17"/>
+            </succ>
+         </bb>
+         <bb id="c15b13">
+            <prec>
+               <link type="taken" cfg="c15" bb="c15b8"/>
+            </prec>
+            <inst addr="0x40101840"/>
+            <succ>
+               <link type="nottaken" cfg="c15" bb="c15b17"/>
+            </succ>
+         </bb>
+         <bb id="c15b14">
+            <prec>
+               <link type="nottaken" cfg="c15" bb="c15b9"/>
+            </prec>
+            <inst addr="0x40101A30"/>
+            <inst addr="0x40101A34" src="s4" line="225"/>
+            <inst addr="0x40101A38"/>
+            <inst addr="0x40101A3C"/>
+            <inst addr="0x40101A40"/>
+            <succ>
+               <link type="call" cfg="c18" bb="c18b1"/>
+               <link type="nottaken" cfg="c15" bb="c15b7"/>
+            </succ>
+         </bb>
+         <bb id="c15b15">
+            <prec>
+               <link type="taken" cfg="c15" bb="c15b9"/>
+            </prec>
+            <inst addr="0x40101A30"/>
+            <succ>
+               <link type="nottaken" cfg="c15" bb="c15b7"/>
+            </succ>
+         </bb>
+         <bb id="c15b16">
+            <prec>
+               <link type="nottaken" cfg="c15" bb="c15b10"/>
+               <link type="nottaken" cfg="c15" bb="c15b11"/>
+            </prec>
+            <inst addr="0x40101A74" src="s4" line="236"/>
+            <inst addr="0x40101A78"/>
+            <inst addr="0x40101A7C" src="s4" line="238"/>
+            <inst addr="0x40101A80"/>
+            <inst addr="0x40101A84"/>
+         </bb>
+         <bb id="c15b17">
+            <prec>
+               <link type="nottaken" cfg="c15" bb="c15b12"/>
+               <link type="nottaken" cfg="c15" bb="c15b13"/>
+            </prec>
+            <inst addr="0x40101848" src="s4" line="198"/>
+            <inst addr="0x4010184C"/>
+            <inst addr="0x40101850" src="s4" line="201"/>
+            <inst addr="0x40101854"/>
+            <inst addr="0x40101858"/>
+            <inst addr="0x4010185C"/>
+            <inst addr="0x40101860"/>
+            <inst addr="0x40101864"/>
+            <inst addr="0x40101868"/>
+            <inst addr="0x4010186C"/>
+            <succ>
+               <link type="nottaken" cfg="c15" bb="c15b19"/>
+               <link type="taken" cfg="c15" bb="c15b20"/>
+            </succ>
+         </bb>
+         <bb id="c15b19">
+            <prec>
+               <link type="nottaken" cfg="c15" bb="c15b17"/>
+            </prec>
+            <inst addr="0x40101870"/>
+            <inst addr="0x40101874"/>
+            <succ>
+               <link type="nottaken" cfg="c15" bb="c15b21"/>
+            </succ>
+         </bb>
+         <bb id="c15b20">
+            <prec>
+               <link type="taken" cfg="c15" bb="c15b17"/>
+            </prec>
+            <inst addr="0x40101870"/>
+            <succ>
+               <link type="nottaken" cfg="c15" bb="c15b21"/>
+            </succ>
+         </bb>
+         <bb id="c15b21">
+            <prec>
+               <link type="nottaken" cfg="c15" bb="c15b19"/>
+               <link type="nottaken" cfg="c15" bb="c15b20"/>
+            </prec>
+            <inst addr="0x40101878" src="s4" line="200"/>
+            <inst addr="0x4010187C"/>
+            <inst addr="0x40101880" src="s4" line="203"/>
+            <inst addr="0x40101884"/>
+            <inst addr="0x40101888"/>
+            <inst addr="0x4010188C"/>
+            <inst addr="0x40101890"/>
+            <inst addr="0x40101894"/>
+            <inst addr="0x40101898"/>
+            <inst addr="0x4010189C"/>
+            <succ>
+               <link type="nottaken" cfg="c15" bb="c15b22"/>
+               <link type="taken" cfg="c15" bb="c15b23"/>
+            </succ>
+         </bb>
+         <bb id="c15b22">
+            <prec>
+               <link type="nottaken" cfg="c15" bb="c15b21"/>
+            </prec>
+            <inst addr="0x401018A0"/>
+            <inst addr="0x401018A4"/>
+            <succ>
+               <link type="nottaken" cfg="c15" bb="c15b24"/>
+            </succ>
+         </bb>
+         <bb id="c15b23">
+            <prec>
+               <link type="taken" cfg="c15" bb="c15b21"/>
+            </prec>
+            <inst addr="0x401018A0"/>
+            <succ>
+               <link type="nottaken" cfg="c15" bb="c15b24"/>
+            </succ>
+         </bb>
+         <bb id="c15b24">
+            <prec>
+               <link type="nottaken" cfg="c15" bb="c15b22"/>
+               <link type="nottaken" cfg="c15" bb="c15b23"/>
+            </prec>
+            <inst addr="0x401018A8" src="s4" line="202"/>
+            <inst addr="0x401018AC"/>
+            <inst addr="0x401018B0" src="s4" line="205"/>
+            <inst addr="0x401018B4"/>
+            <inst addr="0x401018B8"/>
+            <inst addr="0x401018BC"/>
+            <inst addr="0x401018C0"/>
+            <inst addr="0x401018C4"/>
+            <inst addr="0x401018C8"/>
+            <inst addr="0x401018CC"/>
+            <succ>
+               <link type="nottaken" cfg="c15" bb="c15b25"/>
+               <link type="taken" cfg="c15" bb="c15b26"/>
+            </succ>
+         </bb>
+         <bb id="c15b25">
+            <prec>
+               <link type="nottaken" cfg="c15" bb="c15b24"/>
+            </prec>
+            <inst addr="0x401018D0"/>
+            <inst addr="0x401018D4"/>
+            <succ>
+               <link type="nottaken" cfg="c15" bb="c15b27"/>
+            </succ>
+         </bb>
+         <bb id="c15b26">
+            <prec>
+               <link type="taken" cfg="c15" bb="c15b24"/>
+            </prec>
+            <inst addr="0x401018D0"/>
+            <succ>
+               <link type="nottaken" cfg="c15" bb="c15b27"/>
+            </succ>
+         </bb>
+         <bb id="c15b27">
+            <prec>
+               <link type="nottaken" cfg="c15" bb="c15b25"/>
+               <link type="nottaken" cfg="c15" bb="c15b26"/>
+            </prec>
+            <inst addr="0x401018D8" src="s4" line="204"/>
+            <inst addr="0x401018DC"/>
+            <inst addr="0x401018E0" src="s4" line="207"/>
+            <inst addr="0x401018E4"/>
+            <inst addr="0x401018E8"/>
+            <inst addr="0x401018EC"/>
+            <inst addr="0x401018F0"/>
+            <inst addr="0x401018F4" src="s4" line="208"/>
+            <inst addr="0x401018F8"/>
+            <inst addr="0x401018FC"/>
+            <inst addr="0x40101900"/>
+            <inst addr="0x40101904"/>
+            <inst addr="0x40101908"/>
+            <succ>
+               <link type="nottaken" cfg="c15" bb="c15b28"/>
+               <link type="taken" cfg="c15" bb="c15b29"/>
+            </succ>
+         </bb>
+         <bb id="c15b28">
+            <prec>
+               <link type="nottaken" cfg="c15" bb="c15b27"/>
+            </prec>
+            <inst addr="0x4010190C"/>
+            <inst addr="0x40101910"/>
+            <inst addr="0x40101914"/>
+            <inst addr="0x4010192C" src="s4" line="210"/>
+            <inst addr="0x40101930"/>
+            <inst addr="0x40101934"/>
+            <inst addr="0x40101938"/>
+            <inst addr="0x4010193C"/>
+            <inst addr="0x40101940"/>
+            <succ>
+               <link type="nottaken" cfg="c15" bb="c15b30"/>
+               <link type="taken" cfg="c15" bb="c15b31"/>
+            </succ>
+         </bb>
+         <bb id="c15b29">
+            <prec>
+               <link type="taken" cfg="c15" bb="c15b27"/>
+            </prec>
+            <inst addr="0x4010190C"/>
+            <inst addr="0x40101918" src="s4" line="209"/>
+            <inst addr="0x4010191C"/>
+            <inst addr="0x40101920"/>
+            <inst addr="0x40101924"/>
+            <inst addr="0x40101928"/>
+            <succ>
+               <link type="nottaken" cfg="c15" bb="c15b32"/>
+            </succ>
+         </bb>
+         <bb id="c15b30">
+            <prec>
+               <link type="nottaken" cfg="c15" bb="c15b28"/>
+            </prec>
+            <inst addr="0x40101944"/>
+            <inst addr="0x40101948"/>
+            <inst addr="0x4010194C"/>
+            <succ>
+               <link type="nottaken" cfg="c15" bb="c15b32"/>
+            </succ>
+         </bb>
+         <bb id="c15b31">
+            <prec>
+               <link type="taken" cfg="c15" bb="c15b28"/>
+            </prec>
+            <inst addr="0x40101944"/>
+            <inst addr="0x40101950" src="s4" line="211"/>
+            <inst addr="0x40101954"/>
+            <inst addr="0x40101958"/>
+            <succ>
+               <link type="nottaken" cfg="c15" bb="c15b32"/>
+            </succ>
+         </bb>
+         <bb id="c15b32">
+            <prec>
+               <link type="nottaken" cfg="c15" bb="c15b29"/>
+               <link type="nottaken" cfg="c15" bb="c15b30"/>
+               <link type="nottaken" cfg="c15" bb="c15b31"/>
+            </prec>
+            <inst addr="0x4010195C" src="s4" line="214"/>
+            <inst addr="0x40101960"/>
+            <inst addr="0x40101964"/>
+            <inst addr="0x40101968"/>
+            <inst addr="0x4010196C"/>
+            <inst addr="0x40101970"/>
+            <inst addr="0x40101974"/>
+            <succ>
+               <link type="nottaken" cfg="c15" bb="c15b33"/>
+               <link type="taken" cfg="c15" bb="c15b34"/>
+            </succ>
+         </bb>
+         <bb id="c15b33">
+            <prec>
+               <link type="nottaken" cfg="c15" bb="c15b32"/>
+            </prec>
+            <inst addr="0x40101978"/>
+            <inst addr="0x4010197C"/>
+            <inst addr="0x40101980"/>
+            <inst addr="0x401019D4" src="s4" line="219"/>
+            <inst addr="0x401019D8"/>
+            <inst addr="0x401019DC"/>
+            <inst addr="0x401019E0"/>
+            <inst addr="0x401019E4"/>
+            <inst addr="0x401019E8"/>
+            <inst addr="0x401019EC"/>
+            <succ>
+               <link type="nottaken" cfg="c15" bb="c15b35"/>
+               <link type="taken" cfg="c15" bb="c15b36"/>
+            </succ>
+         </bb>
+         <bb id="c15b34">
+            <prec>
+               <link type="taken" cfg="c15" bb="c15b32"/>
+            </prec>
+            <inst addr="0x40101978"/>
+            <inst addr="0x40101984" src="s4" line="215"/>
+            <inst addr="0x40101988"/>
+            <inst addr="0x4010198C"/>
+            <inst addr="0x40101990"/>
+            <inst addr="0x40101994"/>
+            <inst addr="0x40101998"/>
+            <inst addr="0x4010199C"/>
+            <inst addr="0x401019A0"/>
+            <inst addr="0x401019A4"/>
+            <inst addr="0x401019A8"/>
+            <inst addr="0x401019AC"/>
+            <inst addr="0x401019B0" src="s4" line="216"/>
+            <inst addr="0x401019B4"/>
+            <inst addr="0x401019B8"/>
+            <inst addr="0x401019BC"/>
+            <inst addr="0x401019C0"/>
+            <inst addr="0x401019C4"/>
+            <inst addr="0x401019C8"/>
+            <inst addr="0x401019CC"/>
+            <inst addr="0x401019D0"/>
+            <succ>
+               <link type="nottaken" cfg="c15" bb="c15b7"/>
+            </succ>
+         </bb>
+         <bb id="c15b35">
+            <prec>
+               <link type="nottaken" cfg="c15" bb="c15b33"/>
+            </prec>
+            <inst addr="0x401019F0"/>
+            <inst addr="0x401019F4"/>
+            <inst addr="0x401019F8"/>
+            <succ>
+               <link type="nottaken" cfg="c15" bb="c15b7"/>
+            </succ>
+         </bb>
+         <bb id="c15b36">
+            <prec>
+               <link type="taken" cfg="c15" bb="c15b33"/>
+            </prec>
+            <inst addr="0x401019F0"/>
+            <inst addr="0x401019FC" src="s4" line="220"/>
+            <inst addr="0x40101A00"/>
+            <inst addr="0x40101A04"/>
+            <inst addr="0x40101A08"/>
+            <inst addr="0x40101A0C"/>
+            <inst addr="0x40101A10"/>
+            <inst addr="0x40101A14"/>
+            <inst addr="0x40101A18"/>
+            <inst addr="0x40101A1C"/>
+            <succ>
+               <link type="nottaken" cfg="c15" bb="c15b7"/>
+            </succ>
+         </bb>
+      </cfg>
+      <cfg id="c18" name="xgnc__navigation__gnc_ambiguous_sun_direction_disable">
+         <bb id="c18b1">
+            <prec>
+               <link type="call" cfg="c15" bb="c15b14"/>
+            </prec>
+            <inst addr="0x40101A88" src="s4" line="240"/>
+            <inst addr="0x40101A8C"/>
+            <inst addr="0x40101A90"/>
+            <inst addr="0x40101A94" src="s4" line="243"/>
+            <inst addr="0x40101A98"/>
+            <inst addr="0x40101A9C"/>
+            <inst addr="0x40101AA0"/>
+            <inst addr="0x40101AA4"/>
+            <succ>
+               <link type="nottaken" cfg="c18" bb="c18b2"/>
+               <link type="taken" cfg="c18" bb="c18b3"/>
+            </succ>
+         </bb>
+         <bb id="c18b2">
+            <prec>
+               <link type="nottaken" cfg="c18" bb="c18b1"/>
+            </prec>
+            <inst addr="0x40101AA8"/>
+            <inst addr="0x40101AAC" src="s4" line="244"/>
+            <inst addr="0x40101AB0"/>
+            <inst addr="0x40101AB4" src="s4" line="245"/>
+            <inst addr="0x40101AB8"/>
+            <inst addr="0x40101ABC"/>
+            <inst addr="0x40101AC0"/>
+            <inst addr="0x40101AC4"/>
+            <succ>
+               <link type="nottaken" cfg="c18" bb="c18b4"/>
+            </succ>
+         </bb>
+         <bb id="c18b3">
+            <prec>
+               <link type="taken" cfg="c18" bb="c18b1"/>
+            </prec>
+            <inst addr="0x40101AA8"/>
+            <inst addr="0x40101AC8" src="s4" line="247"/>
+            <inst addr="0x40101ACC"/>
+            <inst addr="0x40101AD0"/>
+            <inst addr="0x40101AD4" src="s4" line="248"/>
+            <inst addr="0x40101AD8"/>
+            <inst addr="0x40101ADC"/>
+            <succ>
+               <link type="nottaken" cfg="c18" bb="c18b4"/>
+            </succ>
+         </bb>
+         <bb id="c18b4">
+            <prec>
+               <link type="nottaken" cfg="c18" bb="c18b2"/>
+               <link type="nottaken" cfg="c18" bb="c18b3"/>
+            </prec>
+            <inst addr="0x40101AE0" src="s4" line="250"/>
+            <inst addr="0x40101AE4"/>
+            <inst addr="0x40101AE8"/>
+         </bb>
+      </cfg>
+      <cfg id="c8" name="xgnc__aocs_computation">
+         <bb id="c8b1">
+            <prec>
+               <link type="call" cfg="c6" bb="c6b8"/>
+            </prec>
+            <inst addr="0x401000B4" src="s2" line="73"/>
+            <inst addr="0x401000B8" src="s2" line="74"/>
+            <inst addr="0x401000BC"/>
+            <inst addr="0x401000C0"/>
+            <inst addr="0x401000C4"/>
+            <inst addr="0x401000C8" src="s2" line="82"/>
+            <inst addr="0x401000CC"/>
+            <inst addr="0x401000D0"/>
+            <inst addr="0x401000D4"/>
+            <inst addr="0x401000D8"/>
+            <inst addr="0x401000DC"/>
+            <inst addr="0x401000E0" src="s2" line="83"/>
+            <inst addr="0x401000E4"/>
+            <inst addr="0x401000E8"/>
+            <inst addr="0x401000EC"/>
+            <inst addr="0x401000F0"/>
+            <inst addr="0x401000F4"/>
+            <inst addr="0x401000F8" src="s2" line="84"/>
+            <inst addr="0x401000FC"/>
+            <inst addr="0x40100100"/>
+            <inst addr="0x40100104"/>
+            <inst addr="0x40100108"/>
+            <inst addr="0x4010010C"/>
+            <inst addr="0x40100110" src="s2" line="85"/>
+            <inst addr="0x40100114"/>
+            <inst addr="0x40100118"/>
+            <inst addr="0x4010011C"/>
+            <inst addr="0x40100120"/>
+            <inst addr="0x40100124"/>
+            <inst addr="0x40100128" src="s2" line="86"/>
+            <inst addr="0x4010012C"/>
+            <inst addr="0x40100130"/>
+            <inst addr="0x40100134"/>
+            <inst addr="0x40100138"/>
+            <inst addr="0x4010013C"/>
+            <inst addr="0x40100140" src="s2" line="87"/>
+            <inst addr="0x40100144"/>
+            <inst addr="0x40100148"/>
+            <inst addr="0x4010014C"/>
+            <inst addr="0x40100150" src="s2" line="88"/>
+            <inst addr="0x40100154"/>
+            <inst addr="0x40100158"/>
+            <inst addr="0x4010015C"/>
+            <inst addr="0x40100160" src="s2" line="89"/>
+            <inst addr="0x40100164"/>
+            <inst addr="0x40100168"/>
+            <inst addr="0x4010016C"/>
+            <inst addr="0x40100170"/>
+            <inst addr="0x40100174"/>
+            <inst addr="0x40100178" src="s2" line="90"/>
+            <inst addr="0x4010017C"/>
+            <inst addr="0x40100180"/>
+            <inst addr="0x40100184"/>
+            <inst addr="0x40100188"/>
+            <inst addr="0x4010018C"/>
+            <inst addr="0x40100190"/>
+            <inst addr="0x40100194"/>
+            <inst addr="0x40100198" src="s2" line="91"/>
+            <inst addr="0x4010019C"/>
+            <inst addr="0x401001A0" src="s2" line="92"/>
+            <inst addr="0x401001A4"/>
+            <inst addr="0x401001A8"/>
+            <inst addr="0x401001AC"/>
+            <inst addr="0x401001B0"/>
+            <inst addr="0x401001B4"/>
+            <inst addr="0x401001B8"/>
+            <inst addr="0x401001BC"/>
+            <succ>
+               <link type="call" cfg="c9" bb="c9b1"/>
+               <link type="nottaken" cfg="c8" bb="c8b3"/>
+            </succ>
+         </bb>
+         <bb id="c8b3">
+            <prec>
+               <link type="nottaken" cfg="c8" bb="c8b1"/>
+            </prec>
+            <inst addr="0x401001C0" src="s2" line="93"/>
+            <inst addr="0x401001C4"/>
+            <inst addr="0x401001C8"/>
+         </bb>
+      </cfg>
+      <cfg id="c9" name="xgnc__control__step">
+         <bb id="c9b1">
+            <prec>
+               <link type="call" cfg="c8" bb="c8b1"/>
+            </prec>
+            <inst addr="0x40100370" src="s5" line="8"/>
+            <inst addr="0x40100374"/>
+            <inst addr="0x40100378"/>
+            <inst addr="0x4010037C"/>
+            <inst addr="0x40100380" src="s5" line="27"/>
+            <inst addr="0x40100384"/>
+            <inst addr="0x40100388"/>
+            <inst addr="0x4010038C"/>
+            <inst addr="0x40100390"/>
+            <inst addr="0x40100394"/>
+            <inst addr="0x40100398"/>
+            <inst addr="0x4010039C"/>
+            <inst addr="0x401003A0"/>
+            <inst addr="0x401003A4"/>
+            <inst addr="0x401003A8"/>
+            <inst addr="0x401003AC"/>
+            <inst addr="0x401003B0"/>
+            <inst addr="0x401003B4"/>
+            <inst addr="0x401003B8"/>
+            <inst addr="0x401003BC"/>
+            <inst addr="0x401003C0" src="s5" line="28"/>
+            <inst addr="0x401003C4"/>
+            <inst addr="0x401003C8"/>
+            <inst addr="0x401003CC"/>
+            <inst addr="0x401003D0" src="s5" line="29"/>
+            <inst addr="0x401003D4"/>
+            <inst addr="0x401003D8"/>
+            <inst addr="0x401003DC" src="s5" line="30"/>
+            <inst addr="0x401003E0"/>
+            <inst addr="0x401003E4"/>
+            <inst addr="0x401003E8"/>
+            <inst addr="0x401003EC"/>
+            <inst addr="0x401003F0"/>
+            <inst addr="0x401003F4"/>
+            <inst addr="0x401003F8"/>
+            <inst addr="0x401003FC"/>
+            <inst addr="0x40100400" src="s5" line="31"/>
+            <inst addr="0x40100404"/>
+            <inst addr="0x40100408"/>
+            <inst addr="0x4010040C"/>
+            <inst addr="0x40100410"/>
+            <inst addr="0x40100414"/>
+            <inst addr="0x40100418"/>
+            <inst addr="0x4010041C"/>
+            <inst addr="0x40100420"/>
+            <inst addr="0x40100424" src="s5" line="32"/>
+            <inst addr="0x40100428"/>
+            <inst addr="0x4010042C"/>
+            <inst addr="0x40100430"/>
+            <inst addr="0x40100434"/>
+            <inst addr="0x40100438"/>
+            <inst addr="0x4010043C"/>
+            <inst addr="0x40100440"/>
+            <inst addr="0x40100444"/>
+            <inst addr="0x40100448" src="s5" line="33"/>
+            <inst addr="0x4010044C"/>
+            <inst addr="0x40100450"/>
+            <inst addr="0x40100454"/>
+            <inst addr="0x40100458"/>
+            <inst addr="0x4010045C"/>
+            <inst addr="0x40100460"/>
+            <inst addr="0x40100464"/>
+            <inst addr="0x40100468"/>
+            <inst addr="0x4010046C" src="s5" line="34"/>
+            <inst addr="0x40100470"/>
+            <inst addr="0x40100474"/>
+            <inst addr="0x40100478" src="s5" line="35"/>
+            <inst addr="0x4010047C"/>
+            <inst addr="0x40100480"/>
+            <inst addr="0x40100484" src="s5" line="36"/>
+            <inst addr="0x40100488"/>
+            <inst addr="0x4010048C"/>
+            <inst addr="0x40100490" src="s5" line="37"/>
+            <inst addr="0x40100494"/>
+            <inst addr="0x40100498"/>
+            <inst addr="0x4010049C" src="s5" line="38"/>
+            <inst addr="0x401004A0"/>
+            <inst addr="0x401004A4" src="s5" line="39"/>
+            <inst addr="0x401004A8"/>
+            <inst addr="0x401004AC" src="s5" line="40"/>
+            <inst addr="0x401004B0"/>
+            <inst addr="0x401004B4" src="s5" line="41"/>
+            <inst addr="0x401004B8"/>
+            <inst addr="0x401004BC" src="s5" line="42"/>
+            <inst addr="0x401004C0"/>
+            <inst addr="0x401004C4" src="s5" line="43"/>
+            <inst addr="0x401004C8"/>
+            <inst addr="0x401004CC"/>
+            <inst addr="0x401004D0"/>
+            <inst addr="0x401004D4"/>
+            <inst addr="0x401004D8"/>
+            <inst addr="0x401004DC"/>
+            <inst addr="0x401004E0"/>
+            <inst addr="0x401004E4" src="s5" line="44"/>
+            <inst addr="0x401004E8"/>
+            <inst addr="0x401004EC"/>
+            <inst addr="0x401004F0"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b2"/>
+               <link type="taken" cfg="c9" bb="c9b3"/>
+            </succ>
+         </bb>
+         <bb id="c9b2">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b1"/>
+            </prec>
+            <inst addr="0x401004F4"/>
+            <inst addr="0x401004F8" src="s5" line="45"/>
+            <inst addr="0x401004FC"/>
+            <inst addr="0x40100500"/>
+            <inst addr="0x40100504"/>
+            <inst addr="0x40100508"/>
+            <inst addr="0x4010050C" src="s5" line="46"/>
+            <inst addr="0x40100510"/>
+            <inst addr="0x40100514"/>
+            <inst addr="0x40100518"/>
+            <inst addr="0x4010051C"/>
+            <inst addr="0x40100520" src="s5" line="47"/>
+            <inst addr="0x40100524"/>
+            <inst addr="0x40100528"/>
+            <inst addr="0x4010052C"/>
+            <inst addr="0x40100530"/>
+            <inst addr="0x40100534" src="s5" line="48"/>
+            <inst addr="0x40100538"/>
+            <inst addr="0x4010053C"/>
+            <inst addr="0x40100540"/>
+            <inst addr="0x40100544"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b4"/>
+            </succ>
+         </bb>
+         <bb id="c9b3">
+            <prec>
+               <link type="taken" cfg="c9" bb="c9b1"/>
+            </prec>
+            <inst addr="0x401004F4"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b4"/>
+            </succ>
+         </bb>
+         <bb id="c9b4">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b2"/>
+               <link type="nottaken" cfg="c9" bb="c9b3"/>
+            </prec>
+            <inst addr="0x40100548" src="s5" line="51"/>
+            <inst addr="0x4010054C"/>
+            <inst addr="0x40100550"/>
+            <inst addr="0x40100554"/>
+            <inst addr="0x40100558"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b5"/>
+               <link type="taken" cfg="c9" bb="c9b6"/>
+            </succ>
+         </bb>
+         <bb id="c9b5">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b4"/>
+            </prec>
+            <inst addr="0x4010055C"/>
+            <inst addr="0x40100560"/>
+            <inst addr="0x40100564"/>
+            <inst addr="0x40100580" src="s5" line="53"/>
+            <inst addr="0x40100584"/>
+            <inst addr="0x40100588"/>
+            <inst addr="0x4010058C"/>
+            <inst addr="0x40100590"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b7"/>
+               <link type="taken" cfg="c9" bb="c9b8"/>
+            </succ>
+         </bb>
+         <bb id="c9b6">
+            <prec>
+               <link type="taken" cfg="c9" bb="c9b4"/>
+            </prec>
+            <inst addr="0x4010055C"/>
+            <inst addr="0x40100568" src="s5" line="52"/>
+            <inst addr="0x4010056C"/>
+            <inst addr="0x40100570"/>
+            <inst addr="0x40100574"/>
+            <inst addr="0x40100578"/>
+            <inst addr="0x4010057C"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b9"/>
+            </succ>
+         </bb>
+         <bb id="c9b7">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b5"/>
+            </prec>
+            <inst addr="0x40100594"/>
+            <inst addr="0x40100598"/>
+            <inst addr="0x4010059C"/>
+            <inst addr="0x401005B0" src="s5" line="56"/>
+            <inst addr="0x401005B4"/>
+            <inst addr="0x401005B8"/>
+            <inst addr="0x401005BC"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b9"/>
+            </succ>
+         </bb>
+         <bb id="c9b8">
+            <prec>
+               <link type="taken" cfg="c9" bb="c9b5"/>
+            </prec>
+            <inst addr="0x40100594"/>
+            <inst addr="0x401005A0" src="s5" line="54"/>
+            <inst addr="0x401005A4"/>
+            <inst addr="0x401005A8"/>
+            <inst addr="0x401005AC"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b9"/>
+            </succ>
+         </bb>
+         <bb id="c9b9">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b6"/>
+               <link type="nottaken" cfg="c9" bb="c9b7"/>
+               <link type="nottaken" cfg="c9" bb="c9b8"/>
+            </prec>
+            <inst addr="0x401005C0" src="s5" line="59"/>
+            <inst addr="0x401005C4"/>
+            <inst addr="0x401005C8"/>
+            <inst addr="0x401005CC"/>
+            <inst addr="0x401005D0"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b10"/>
+               <link type="taken" cfg="c9" bb="c9b11"/>
+            </succ>
+         </bb>
+         <bb id="c9b10">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b9"/>
+            </prec>
+            <inst addr="0x401005D4"/>
+            <inst addr="0x401005D8"/>
+            <inst addr="0x401005DC"/>
+            <inst addr="0x401005F8" src="s5" line="61"/>
+            <inst addr="0x401005FC"/>
+            <inst addr="0x40100600"/>
+            <inst addr="0x40100604"/>
+            <inst addr="0x40100608"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b12"/>
+               <link type="taken" cfg="c9" bb="c9b13"/>
+            </succ>
+         </bb>
+         <bb id="c9b11">
+            <prec>
+               <link type="taken" cfg="c9" bb="c9b9"/>
+            </prec>
+            <inst addr="0x401005D4"/>
+            <inst addr="0x401005E0" src="s5" line="60"/>
+            <inst addr="0x401005E4"/>
+            <inst addr="0x401005E8"/>
+            <inst addr="0x401005EC"/>
+            <inst addr="0x401005F0"/>
+            <inst addr="0x401005F4"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b14"/>
+            </succ>
+         </bb>
+         <bb id="c9b12">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b10"/>
+            </prec>
+            <inst addr="0x4010060C"/>
+            <inst addr="0x40100610"/>
+            <inst addr="0x40100614"/>
+            <inst addr="0x40100628" src="s5" line="64"/>
+            <inst addr="0x4010062C"/>
+            <inst addr="0x40100630"/>
+            <inst addr="0x40100634"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b14"/>
+            </succ>
+         </bb>
+         <bb id="c9b13">
+            <prec>
+               <link type="taken" cfg="c9" bb="c9b10"/>
+            </prec>
+            <inst addr="0x4010060C"/>
+            <inst addr="0x40100618" src="s5" line="62"/>
+            <inst addr="0x4010061C"/>
+            <inst addr="0x40100620"/>
+            <inst addr="0x40100624"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b14"/>
+            </succ>
+         </bb>
+         <bb id="c9b14">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b11"/>
+               <link type="nottaken" cfg="c9" bb="c9b12"/>
+               <link type="nottaken" cfg="c9" bb="c9b13"/>
+            </prec>
+            <inst addr="0x40100638" src="s5" line="67"/>
+            <inst addr="0x4010063C"/>
+            <inst addr="0x40100640"/>
+            <inst addr="0x40100644"/>
+            <inst addr="0x40100648"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b15"/>
+               <link type="taken" cfg="c9" bb="c9b16"/>
+            </succ>
+         </bb>
+         <bb id="c9b15">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b14"/>
+            </prec>
+            <inst addr="0x4010064C"/>
+            <inst addr="0x40100650"/>
+            <inst addr="0x40100654"/>
+            <inst addr="0x40100670" src="s5" line="69"/>
+            <inst addr="0x40100674"/>
+            <inst addr="0x40100678"/>
+            <inst addr="0x4010067C"/>
+            <inst addr="0x40100680"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b17"/>
+               <link type="taken" cfg="c9" bb="c9b18"/>
+            </succ>
+         </bb>
+         <bb id="c9b16">
+            <prec>
+               <link type="taken" cfg="c9" bb="c9b14"/>
+            </prec>
+            <inst addr="0x4010064C"/>
+            <inst addr="0x40100658" src="s5" line="68"/>
+            <inst addr="0x4010065C"/>
+            <inst addr="0x40100660"/>
+            <inst addr="0x40100664"/>
+            <inst addr="0x40100668"/>
+            <inst addr="0x4010066C"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b19"/>
+            </succ>
+         </bb>
+         <bb id="c9b17">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b15"/>
+            </prec>
+            <inst addr="0x40100684"/>
+            <inst addr="0x40100688"/>
+            <inst addr="0x4010068C"/>
+            <inst addr="0x401006A0" src="s5" line="72"/>
+            <inst addr="0x401006A4"/>
+            <inst addr="0x401006A8"/>
+            <inst addr="0x401006AC"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b19"/>
+            </succ>
+         </bb>
+         <bb id="c9b18">
+            <prec>
+               <link type="taken" cfg="c9" bb="c9b15"/>
+            </prec>
+            <inst addr="0x40100684"/>
+            <inst addr="0x40100690" src="s5" line="70"/>
+            <inst addr="0x40100694"/>
+            <inst addr="0x40100698"/>
+            <inst addr="0x4010069C"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b19"/>
+            </succ>
+         </bb>
+         <bb id="c9b19">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b16"/>
+               <link type="nottaken" cfg="c9" bb="c9b17"/>
+               <link type="nottaken" cfg="c9" bb="c9b18"/>
+            </prec>
+            <inst addr="0x401006B0" src="s5" line="75"/>
+            <inst addr="0x401006B4"/>
+            <inst addr="0x401006B8"/>
+            <inst addr="0x401006BC"/>
+            <inst addr="0x401006C0"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b20"/>
+               <link type="taken" cfg="c9" bb="c9b21"/>
+            </succ>
+         </bb>
+         <bb id="c9b20">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b19"/>
+            </prec>
+            <inst addr="0x401006C4"/>
+            <inst addr="0x401006C8"/>
+            <inst addr="0x401006CC"/>
+            <inst addr="0x401006E8" src="s5" line="77"/>
+            <inst addr="0x401006EC"/>
+            <inst addr="0x401006F0"/>
+            <inst addr="0x401006F4"/>
+            <inst addr="0x401006F8"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b22"/>
+               <link type="taken" cfg="c9" bb="c9b23"/>
+            </succ>
+         </bb>
+         <bb id="c9b21">
+            <prec>
+               <link type="taken" cfg="c9" bb="c9b19"/>
+            </prec>
+            <inst addr="0x401006C4"/>
+            <inst addr="0x401006D0" src="s5" line="76"/>
+            <inst addr="0x401006D4"/>
+            <inst addr="0x401006D8"/>
+            <inst addr="0x401006DC"/>
+            <inst addr="0x401006E0"/>
+            <inst addr="0x401006E4"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b24"/>
+            </succ>
+         </bb>
+         <bb id="c9b22">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b20"/>
+            </prec>
+            <inst addr="0x401006FC"/>
+            <inst addr="0x40100700"/>
+            <inst addr="0x40100704"/>
+            <inst addr="0x40100718" src="s5" line="80"/>
+            <inst addr="0x4010071C"/>
+            <inst addr="0x40100720"/>
+            <inst addr="0x40100724"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b24"/>
+            </succ>
+         </bb>
+         <bb id="c9b23">
+            <prec>
+               <link type="taken" cfg="c9" bb="c9b20"/>
+            </prec>
+            <inst addr="0x401006FC"/>
+            <inst addr="0x40100708" src="s5" line="78"/>
+            <inst addr="0x4010070C"/>
+            <inst addr="0x40100710"/>
+            <inst addr="0x40100714"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b24"/>
+            </succ>
+         </bb>
+         <bb id="c9b24">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b21"/>
+               <link type="nottaken" cfg="c9" bb="c9b22"/>
+               <link type="nottaken" cfg="c9" bb="c9b23"/>
+            </prec>
+            <inst addr="0x40100728" src="s5" line="83"/>
+            <inst addr="0x4010072C"/>
+            <inst addr="0x40100730"/>
+            <inst addr="0x40100734"/>
+            <inst addr="0x40100738"/>
+            <inst addr="0x4010073C"/>
+            <inst addr="0x40100740" src="s5" line="85"/>
+            <inst addr="0x40100744"/>
+            <inst addr="0x40100748" src="s5" line="86"/>
+            <inst addr="0x4010074C"/>
+            <inst addr="0x40100750" src="s5" line="87"/>
+            <inst addr="0x40100754"/>
+            <inst addr="0x40100758" src="s5" line="88"/>
+            <inst addr="0x4010075C"/>
+            <inst addr="0x40100760" src="s5" line="89"/>
+            <inst addr="0x40100764"/>
+            <inst addr="0x40100768"/>
+            <inst addr="0x4010076C"/>
+            <inst addr="0x40100770"/>
+            <inst addr="0x40100774"/>
+            <inst addr="0x40100778"/>
+            <inst addr="0x4010077C"/>
+            <inst addr="0x40100780" src="s5" line="90"/>
+            <inst addr="0x40100784"/>
+            <inst addr="0x40100788"/>
+            <inst addr="0x4010078C"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b25"/>
+               <link type="taken" cfg="c9" bb="c9b26"/>
+            </succ>
+         </bb>
+         <bb id="c9b25">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b24"/>
+            </prec>
+            <inst addr="0x40100790"/>
+            <inst addr="0x40100794" src="s5" line="91"/>
+            <inst addr="0x40100798"/>
+            <inst addr="0x4010079C"/>
+            <inst addr="0x401007A0"/>
+            <inst addr="0x401007A4"/>
+            <inst addr="0x401007A8" src="s5" line="92"/>
+            <inst addr="0x401007AC"/>
+            <inst addr="0x401007B0"/>
+            <inst addr="0x401007B4"/>
+            <inst addr="0x401007B8"/>
+            <inst addr="0x401007BC" src="s5" line="93"/>
+            <inst addr="0x401007C0"/>
+            <inst addr="0x401007C4"/>
+            <inst addr="0x401007C8"/>
+            <inst addr="0x401007CC"/>
+            <inst addr="0x401007D0" src="s5" line="94"/>
+            <inst addr="0x401007D4"/>
+            <inst addr="0x401007D8"/>
+            <inst addr="0x401007DC"/>
+            <inst addr="0x401007E0"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b27"/>
+            </succ>
+         </bb>
+         <bb id="c9b26">
+            <prec>
+               <link type="taken" cfg="c9" bb="c9b24"/>
+            </prec>
+            <inst addr="0x40100790"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b27"/>
+            </succ>
+         </bb>
+         <bb id="c9b27">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b25"/>
+               <link type="nottaken" cfg="c9" bb="c9b26"/>
+            </prec>
+            <inst addr="0x401007E4" src="s5" line="97"/>
+            <inst addr="0x401007E8"/>
+            <inst addr="0x401007EC"/>
+            <inst addr="0x401007F0"/>
+            <inst addr="0x401007F4"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b28"/>
+               <link type="taken" cfg="c9" bb="c9b29"/>
+            </succ>
+         </bb>
+         <bb id="c9b28">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b27"/>
+            </prec>
+            <inst addr="0x401007F8"/>
+            <inst addr="0x401007FC"/>
+            <inst addr="0x40100800"/>
+            <inst addr="0x4010081C" src="s5" line="99"/>
+            <inst addr="0x40100820"/>
+            <inst addr="0x40100824"/>
+            <inst addr="0x40100828"/>
+            <inst addr="0x4010082C"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b30"/>
+               <link type="taken" cfg="c9" bb="c9b31"/>
+            </succ>
+         </bb>
+         <bb id="c9b29">
+            <prec>
+               <link type="taken" cfg="c9" bb="c9b27"/>
+            </prec>
+            <inst addr="0x401007F8"/>
+            <inst addr="0x40100804" src="s5" line="98"/>
+            <inst addr="0x40100808"/>
+            <inst addr="0x4010080C"/>
+            <inst addr="0x40100810"/>
+            <inst addr="0x40100814"/>
+            <inst addr="0x40100818"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b32"/>
+            </succ>
+         </bb>
+         <bb id="c9b30">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b28"/>
+            </prec>
+            <inst addr="0x40100830"/>
+            <inst addr="0x40100834"/>
+            <inst addr="0x40100838"/>
+            <inst addr="0x4010084C" src="s5" line="102"/>
+            <inst addr="0x40100850"/>
+            <inst addr="0x40100854"/>
+            <inst addr="0x40100858"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b32"/>
+            </succ>
+         </bb>
+         <bb id="c9b31">
+            <prec>
+               <link type="taken" cfg="c9" bb="c9b28"/>
+            </prec>
+            <inst addr="0x40100830"/>
+            <inst addr="0x4010083C" src="s5" line="100"/>
+            <inst addr="0x40100840"/>
+            <inst addr="0x40100844"/>
+            <inst addr="0x40100848"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b32"/>
+            </succ>
+         </bb>
+         <bb id="c9b32">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b29"/>
+               <link type="nottaken" cfg="c9" bb="c9b30"/>
+               <link type="nottaken" cfg="c9" bb="c9b31"/>
+            </prec>
+            <inst addr="0x4010085C" src="s5" line="105"/>
+            <inst addr="0x40100860"/>
+            <inst addr="0x40100864"/>
+            <inst addr="0x40100868"/>
+            <inst addr="0x4010086C"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b33"/>
+               <link type="taken" cfg="c9" bb="c9b34"/>
+            </succ>
+         </bb>
+         <bb id="c9b33">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b32"/>
+            </prec>
+            <inst addr="0x40100870"/>
+            <inst addr="0x40100874"/>
+            <inst addr="0x40100878"/>
+            <inst addr="0x40100894" src="s5" line="107"/>
+            <inst addr="0x40100898"/>
+            <inst addr="0x4010089C"/>
+            <inst addr="0x401008A0"/>
+            <inst addr="0x401008A4"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b35"/>
+               <link type="taken" cfg="c9" bb="c9b36"/>
+            </succ>
+         </bb>
+         <bb id="c9b34">
+            <prec>
+               <link type="taken" cfg="c9" bb="c9b32"/>
+            </prec>
+            <inst addr="0x40100870"/>
+            <inst addr="0x4010087C" src="s5" line="106"/>
+            <inst addr="0x40100880"/>
+            <inst addr="0x40100884"/>
+            <inst addr="0x40100888"/>
+            <inst addr="0x4010088C"/>
+            <inst addr="0x40100890"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b37"/>
+            </succ>
+         </bb>
+         <bb id="c9b35">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b33"/>
+            </prec>
+            <inst addr="0x401008A8"/>
+            <inst addr="0x401008AC"/>
+            <inst addr="0x401008B0"/>
+            <inst addr="0x401008C4" src="s5" line="110"/>
+            <inst addr="0x401008C8"/>
+            <inst addr="0x401008CC"/>
+            <inst addr="0x401008D0"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b37"/>
+            </succ>
+         </bb>
+         <bb id="c9b36">
+            <prec>
+               <link type="taken" cfg="c9" bb="c9b33"/>
+            </prec>
+            <inst addr="0x401008A8"/>
+            <inst addr="0x401008B4" src="s5" line="108"/>
+            <inst addr="0x401008B8"/>
+            <inst addr="0x401008BC"/>
+            <inst addr="0x401008C0"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b37"/>
+            </succ>
+         </bb>
+         <bb id="c9b37">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b34"/>
+               <link type="nottaken" cfg="c9" bb="c9b35"/>
+               <link type="nottaken" cfg="c9" bb="c9b36"/>
+            </prec>
+            <inst addr="0x401008D4" src="s5" line="113"/>
+            <inst addr="0x401008D8"/>
+            <inst addr="0x401008DC"/>
+            <inst addr="0x401008E0"/>
+            <inst addr="0x401008E4"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b38"/>
+               <link type="taken" cfg="c9" bb="c9b39"/>
+            </succ>
+         </bb>
+         <bb id="c9b38">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b37"/>
+            </prec>
+            <inst addr="0x401008E8"/>
+            <inst addr="0x401008EC"/>
+            <inst addr="0x401008F0"/>
+            <inst addr="0x4010090C" src="s5" line="115"/>
+            <inst addr="0x40100910"/>
+            <inst addr="0x40100914"/>
+            <inst addr="0x40100918"/>
+            <inst addr="0x4010091C"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b40"/>
+               <link type="taken" cfg="c9" bb="c9b41"/>
+            </succ>
+         </bb>
+         <bb id="c9b39">
+            <prec>
+               <link type="taken" cfg="c9" bb="c9b37"/>
+            </prec>
+            <inst addr="0x401008E8"/>
+            <inst addr="0x401008F4" src="s5" line="114"/>
+            <inst addr="0x401008F8"/>
+            <inst addr="0x401008FC"/>
+            <inst addr="0x40100900"/>
+            <inst addr="0x40100904"/>
+            <inst addr="0x40100908"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b42"/>
+            </succ>
+         </bb>
+         <bb id="c9b40">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b38"/>
+            </prec>
+            <inst addr="0x40100920"/>
+            <inst addr="0x40100924"/>
+            <inst addr="0x40100928"/>
+            <inst addr="0x4010093C" src="s5" line="118"/>
+            <inst addr="0x40100940"/>
+            <inst addr="0x40100944"/>
+            <inst addr="0x40100948"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b42"/>
+            </succ>
+         </bb>
+         <bb id="c9b41">
+            <prec>
+               <link type="taken" cfg="c9" bb="c9b38"/>
+            </prec>
+            <inst addr="0x40100920"/>
+            <inst addr="0x4010092C" src="s5" line="116"/>
+            <inst addr="0x40100930"/>
+            <inst addr="0x40100934"/>
+            <inst addr="0x40100938"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b42"/>
+            </succ>
+         </bb>
+         <bb id="c9b42">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b39"/>
+               <link type="nottaken" cfg="c9" bb="c9b40"/>
+               <link type="nottaken" cfg="c9" bb="c9b41"/>
+            </prec>
+            <inst addr="0x4010094C" src="s5" line="121"/>
+            <inst addr="0x40100950"/>
+            <inst addr="0x40100954"/>
+            <inst addr="0x40100958"/>
+            <inst addr="0x4010095C"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b43"/>
+               <link type="taken" cfg="c9" bb="c9b44"/>
+            </succ>
+         </bb>
+         <bb id="c9b43">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b42"/>
+            </prec>
+            <inst addr="0x40100960"/>
+            <inst addr="0x40100964"/>
+            <inst addr="0x40100968"/>
+            <inst addr="0x40100984" src="s5" line="123"/>
+            <inst addr="0x40100988"/>
+            <inst addr="0x4010098C"/>
+            <inst addr="0x40100990"/>
+            <inst addr="0x40100994"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b45"/>
+               <link type="taken" cfg="c9" bb="c9b46"/>
+            </succ>
+         </bb>
+         <bb id="c9b44">
+            <prec>
+               <link type="taken" cfg="c9" bb="c9b42"/>
+            </prec>
+            <inst addr="0x40100960"/>
+            <inst addr="0x4010096C" src="s5" line="122"/>
+            <inst addr="0x40100970"/>
+            <inst addr="0x40100974"/>
+            <inst addr="0x40100978"/>
+            <inst addr="0x4010097C"/>
+            <inst addr="0x40100980"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b47"/>
+            </succ>
+         </bb>
+         <bb id="c9b45">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b43"/>
+            </prec>
+            <inst addr="0x40100998"/>
+            <inst addr="0x4010099C"/>
+            <inst addr="0x401009A0"/>
+            <inst addr="0x401009B4" src="s5" line="126"/>
+            <inst addr="0x401009B8"/>
+            <inst addr="0x401009BC"/>
+            <inst addr="0x401009C0"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b47"/>
+            </succ>
+         </bb>
+         <bb id="c9b46">
+            <prec>
+               <link type="taken" cfg="c9" bb="c9b43"/>
+            </prec>
+            <inst addr="0x40100998"/>
+            <inst addr="0x401009A4" src="s5" line="124"/>
+            <inst addr="0x401009A8"/>
+            <inst addr="0x401009AC"/>
+            <inst addr="0x401009B0"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b47"/>
+            </succ>
+         </bb>
+         <bb id="c9b47">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b44"/>
+               <link type="nottaken" cfg="c9" bb="c9b45"/>
+               <link type="nottaken" cfg="c9" bb="c9b46"/>
+            </prec>
+            <inst addr="0x401009C4" src="s5" line="129"/>
+            <inst addr="0x401009C8"/>
+            <inst addr="0x401009CC"/>
+            <inst addr="0x401009D0"/>
+            <inst addr="0x401009D4"/>
+            <inst addr="0x401009D8"/>
+            <inst addr="0x401009DC"/>
+            <inst addr="0x401009E0"/>
+            <inst addr="0x401009E4"/>
+            <inst addr="0x401009E8"/>
+            <inst addr="0x401009EC"/>
+            <inst addr="0x401009F0"/>
+            <inst addr="0x401009F4"/>
+            <inst addr="0x401009F8"/>
+            <inst addr="0x401009FC"/>
+            <inst addr="0x40100A00"/>
+            <inst addr="0x40100A04" src="s5" line="130"/>
+            <inst addr="0x40100A08"/>
+            <inst addr="0x40100A0C"/>
+            <inst addr="0x40100A10"/>
+            <inst addr="0x40100A14"/>
+            <inst addr="0x40100A18"/>
+            <inst addr="0x40100A1C"/>
+            <inst addr="0x40100A20"/>
+            <inst addr="0x40100A24"/>
+            <inst addr="0x40100A28"/>
+            <inst addr="0x40100A2C" src="s5" line="131"/>
+            <inst addr="0x40100A30"/>
+            <inst addr="0x40100A34"/>
+            <inst addr="0x40100A38"/>
+            <inst addr="0x40100A3C"/>
+            <inst addr="0x40100A40" src="s5" line="132"/>
+            <inst addr="0x40100A44"/>
+            <inst addr="0x40100A48"/>
+            <inst addr="0x40100A4C"/>
+            <inst addr="0x40100A50"/>
+            <inst addr="0x40100A54" src="s5" line="130"/>
+            <inst addr="0x40100A58"/>
+            <inst addr="0x40100A5C"/>
+            <inst addr="0x40100A60"/>
+            <inst addr="0x40100A64" src="s5" line="133"/>
+            <inst addr="0x40100A68"/>
+            <inst addr="0x40100A6C"/>
+            <inst addr="0x40100A70"/>
+            <inst addr="0x40100A74"/>
+            <inst addr="0x40100A78"/>
+            <inst addr="0x40100A7C"/>
+            <inst addr="0x40100A80"/>
+            <inst addr="0x40100A84"/>
+            <inst addr="0x40100A88"/>
+            <inst addr="0x40100A8C" src="s5" line="134"/>
+            <inst addr="0x40100A90"/>
+            <inst addr="0x40100A94"/>
+            <inst addr="0x40100A98"/>
+            <inst addr="0x40100A9C"/>
+            <inst addr="0x40100AA0" src="s5" line="135"/>
+            <inst addr="0x40100AA4"/>
+            <inst addr="0x40100AA8"/>
+            <inst addr="0x40100AAC"/>
+            <inst addr="0x40100AB0"/>
+            <inst addr="0x40100AB4" src="s5" line="133"/>
+            <inst addr="0x40100AB8"/>
+            <inst addr="0x40100ABC"/>
+            <inst addr="0x40100AC0"/>
+            <inst addr="0x40100AC4" src="s5" line="137"/>
+            <inst addr="0x40100AC8"/>
+            <inst addr="0x40100ACC"/>
+            <inst addr="0x40100AD0"/>
+            <inst addr="0x40100AD4"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b48"/>
+               <link type="taken" cfg="c9" bb="c9b49"/>
+            </succ>
+         </bb>
+         <bb id="c9b48">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b47"/>
+            </prec>
+            <inst addr="0x40100AD8"/>
+            <inst addr="0x40100ADC"/>
+            <inst addr="0x40100AE0"/>
+            <inst addr="0x40100B04" src="s5" line="140"/>
+            <inst addr="0x40100B08"/>
+            <inst addr="0x40100B0C"/>
+            <inst addr="0x40100B10"/>
+            <inst addr="0x40100B14"/>
+            <inst addr="0x40100B18"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b50"/>
+            </succ>
+         </bb>
+         <bb id="c9b49">
+            <prec>
+               <link type="taken" cfg="c9" bb="c9b47"/>
+            </prec>
+            <inst addr="0x40100AD8"/>
+            <inst addr="0x40100AE4" src="s5" line="138"/>
+            <inst addr="0x40100AE8"/>
+            <inst addr="0x40100AEC"/>
+            <inst addr="0x40100AF0"/>
+            <inst addr="0x40100AF4"/>
+            <inst addr="0x40100AF8"/>
+            <inst addr="0x40100AFC"/>
+            <inst addr="0x40100B00"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b50"/>
+            </succ>
+         </bb>
+         <bb id="c9b50">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b48"/>
+               <link type="nottaken" cfg="c9" bb="c9b49"/>
+            </prec>
+            <inst addr="0x40100B1C" src="s5" line="142"/>
+            <inst addr="0x40100B20"/>
+            <inst addr="0x40100B24"/>
+            <inst addr="0x40100B28"/>
+            <inst addr="0x40100B2C"/>
+            <inst addr="0x40100B30"/>
+            <inst addr="0x40100B34"/>
+            <inst addr="0x40100B38" src="s5" line="143"/>
+            <inst addr="0x40100B3C"/>
+            <inst addr="0x40100B40"/>
+            <inst addr="0x40100B44"/>
+            <inst addr="0x40100B48"/>
+            <inst addr="0x40100B4C"/>
+            <inst addr="0x40100B50"/>
+            <inst addr="0x40100B54"/>
+            <inst addr="0x40100B58"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b51"/>
+               <link type="taken" cfg="c9" bb="c9b52"/>
+            </succ>
+         </bb>
+         <bb id="c9b51">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b50"/>
+            </prec>
+            <inst addr="0x40100B5C"/>
+            <inst addr="0x40100B60"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b53"/>
+            </succ>
+         </bb>
+         <bb id="c9b52">
+            <prec>
+               <link type="taken" cfg="c9" bb="c9b50"/>
+            </prec>
+            <inst addr="0x40100B5C"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b53"/>
+            </succ>
+         </bb>
+         <bb id="c9b53">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b51"/>
+               <link type="nottaken" cfg="c9" bb="c9b52"/>
+            </prec>
+            <inst addr="0x40100B64"/>
+            <inst addr="0x40100B68"/>
+            <inst addr="0x40100B6C"/>
+            <inst addr="0x40100B70"/>
+            <inst addr="0x40100B74"/>
+            <inst addr="0x40100B78"/>
+            <inst addr="0x40100B7C"/>
+            <inst addr="0x40100B80"/>
+            <inst addr="0x40100B84"/>
+            <inst addr="0x40100B88"/>
+            <inst addr="0x40100B8C"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b54"/>
+               <link type="taken" cfg="c9" bb="c9b55"/>
+            </succ>
+         </bb>
+         <bb id="c9b54">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b53"/>
+            </prec>
+            <inst addr="0x40100B90"/>
+            <inst addr="0x40100B94"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b56"/>
+            </succ>
+         </bb>
+         <bb id="c9b55">
+            <prec>
+               <link type="taken" cfg="c9" bb="c9b53"/>
+            </prec>
+            <inst addr="0x40100B90"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b56"/>
+            </succ>
+         </bb>
+         <bb id="c9b56">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b54"/>
+               <link type="nottaken" cfg="c9" bb="c9b55"/>
+            </prec>
+            <inst addr="0x40100B98"/>
+            <inst addr="0x40100B9C"/>
+            <inst addr="0x40100BA0"/>
+            <inst addr="0x40100BA4"/>
+            <inst addr="0x40100BA8"/>
+            <inst addr="0x40100BAC"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b57"/>
+               <link type="taken" cfg="c9" bb="c9b58"/>
+            </succ>
+         </bb>
+         <bb id="c9b57">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b56"/>
+            </prec>
+            <inst addr="0x40100BB0"/>
+            <inst addr="0x40100BB4" src="s5" line="144"/>
+            <inst addr="0x40100BB8"/>
+            <inst addr="0x40100BBC" src="s5" line="145"/>
+            <inst addr="0x40100BC0"/>
+            <inst addr="0x40100BC4"/>
+            <inst addr="0x40100BC8"/>
+            <inst addr="0x40100BCC"/>
+            <inst addr="0x40100BD0"/>
+            <inst addr="0x40100BD4" src="s5" line="146"/>
+            <inst addr="0x40100BD8"/>
+            <inst addr="0x40100BDC"/>
+            <inst addr="0x40100BE0"/>
+            <inst addr="0x40100BE4"/>
+            <inst addr="0x40100BE8"/>
+            <inst addr="0x40100BEC" src="s5" line="147"/>
+            <inst addr="0x40100BF0"/>
+            <inst addr="0x40100BF4"/>
+            <inst addr="0x40100BF8"/>
+            <inst addr="0x40100BFC"/>
+            <inst addr="0x40100C00"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b59"/>
+            </succ>
+         </bb>
+         <bb id="c9b58">
+            <prec>
+               <link type="taken" cfg="c9" bb="c9b56"/>
+            </prec>
+            <inst addr="0x40100BB0"/>
+            <succ>
+               <link type="nottaken" cfg="c9" bb="c9b59"/>
+            </succ>
+         </bb>
+         <bb id="c9b59">
+            <prec>
+               <link type="nottaken" cfg="c9" bb="c9b57"/>
+               <link type="nottaken" cfg="c9" bb="c9b58"/>
+            </prec>
+            <inst addr="0x40100C04" src="s5" line="151"/>
+            <inst addr="0x40100C08"/>
+            <inst addr="0x40100C0C"/>
+         </bb>
+      </cfg>
+   </cfgs>
+   <srcfile id="s1" name="gnc-passive-opcs.adb">
+   </srcfile>
+   <srcfile id="s2" name="xgnc.adb">
+   </srcfile>
+   <srcfile id="s3" name="xgnc-guidance.adb">
+   </srcfile>
+   <srcfile id="s4" name="xgnc-navigation.adb">
+   </srcfile>
+   <srcfile id="s5" name="xgnc-control.adb">
+   </srcfile>
+</program>

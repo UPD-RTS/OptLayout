@@ -1,0 +1,18 @@
+<?xml version="1.0" ?>
+<procedures>
+  <procedure id="t1__taskop">
+    <loop id="L 1">4</loop>
+    <loop id="L 2">5</loop>
+    <loop id="L 3">2</loop>
+ </procedure>
+ <procedure id="ops_a__op1">
+    <loop id="L 1">9</loop>
+ </procedure>
+ <procedure id="ops_b__op1">
+    <loop id="L 1">6</loop>
+ </procedure>
+ <procedure id="ops_c__op1">
+    <loop id="L 1">3</loop>
+ </procedure>
+
+</procedures>

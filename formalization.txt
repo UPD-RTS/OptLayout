@@ -1,0 +1,50 @@
+ 
+
+
+Order_LCT (heuristic);
+Compute_Layout
+  Init_Ram;
+  Update_Node_Types;
+  Order_Tree (heuristic);
+  Load_Constraints;
+  for I in 1..children(root) loop
+    alreadyMapped = {};
+    sharing := false;
+    Process_Sub_tree (childNode, nmb of its children, newPool);
+    if not marked and is procNode then
+      Mark (childnode);
+      Add_procedure (childNode, newPool);
+    end if;
+    if sharing then
+      Check_Mapping (alreadyMapped, displacement);
+      if displacement != 0 then
+	Map (displacement);
+      end if;
+    end if;
+    Map_Pool (newPool);
+    Free (newPool);
+  end loop;
+  Map_Procedure (root);
+end Compute_Layout;
+
+procedure Process_Sub_Tree (n:node; pool : in out Pool) is
+  for c in 1..childNum loop
+    if c is ProcedureNode then
+      if MarkedSibling (c) then
+	null;
+      elsif Marked (c) and Is_Already_Mapped (c) then
+	sharing := True;
+	if (localOpti) then
+	  Flush_Pool (pool);
+	end if;
+      else
+	Process_Sub_Tree (c, pool);
+	Mark_Node_and_Sibiling (c)
+	Add_Procedure (c, pool);
+      end if;
+    else if c is LoopNode then
+      Process_Sub_Tree (c, pool);
+    end if;
+  end loop;
+  Unmark_Sibilings;
+end Process_Sub_Tree;

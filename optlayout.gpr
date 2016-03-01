@@ -1,0 +1,64 @@
+with "/usr/local/xmlada/lib/gnat/xmlada";
+
+project OptLayout is
+
+   for Languages use ("Ada");
+   for Source_Dirs use ("src/**");
+   for Object_Dir use "obj";
+   for Exec_Dir use "dist";
+   for Main use ("main.adb");
+   type Xmlada_Kind_Type is
+      ("static", "relocatable");
+   Library_Type : Xmlada_Kind_Type := external ("LIBRARY_TYPE");
+
+   package Compiler is
+
+      case Library_Type is
+
+         when "static" =>
+            for Default_Switches ("ada") use ("-g", "-gnat05", "-O3");
+
+         when "relocatable" =>
+            for Default_Switches ("ada") use ("-g", "-gnat05");
+      end case;
+   end Compiler;
+
+   package Builder is
+      for Executable ("main.adb") use "optLayout";
+
+      case Library_Type is
+
+         when "static" =>
+
+         when "relocatable" =>
+            for Default_Switches ("ada") use ("-v");
+      end case;
+   end Builder;
+
+   package Linker is
+
+      case Library_Type is
+
+         when "static" =>
+            for Default_Switches ("ada") use ("-Wl,-z common-page-size=0x1000000,--unique,-Map=hello.map");
+            ---Wl,--heap=0x1000000
+
+         when "relocatable" =>
+
+      end case;
+   end Linker;
+
+   package Ide is
+
+      case Library_Type is
+
+         when "static" =>
+            for Vcs_Kind use "Subversion";
+
+         when "relocatable" =>
+
+      end case;
+   end Ide;
+
+end OptLayout;
+
